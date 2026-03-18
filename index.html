@@ -91,12 +91,7 @@
   .tab-content { display: none; }
   .tab-content.active { display: block; }
 
-  /* ══════════════════════════════════════
-     PREMIUM CUSTOM DROPDOWN SYSTEM
-  ══════════════════════════════════════ */
-
   .cs-wrap { position: relative; width: 100%; user-select: none; }
-
   .cs-trigger {
     display: flex; align-items: center; justify-content: space-between; gap: 8px;
     background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
@@ -104,136 +99,68 @@
     transition: border-color 0.2s, box-shadow 0.2s; position: relative; z-index: 2;
   }
   .cs-trigger:hover { border-color: var(--border-bright); }
-  .cs-trigger.is-open {
-    border-color: var(--accent); box-shadow: 0 0 0 2px rgba(79,255,176,0.1);
-    border-bottom-left-radius: 0; border-bottom-right-radius: 0;
-  }
+  .cs-trigger.is-open { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(79,255,176,0.1); border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
   .cs-trigger.branch-trigger.is-open { border-color: var(--accent2); box-shadow: 0 0 0 2px rgba(123,111,240,0.12); }
-
   .cs-tags { display: flex; flex-wrap: wrap; gap: 5px; flex: 1; min-width: 0; }
   .cs-ph { font-size: 13px; color: var(--text-dim); font-family: var(--mono); }
-
-  .cs-tag {
-    display: inline-flex; align-items: center; gap: 5px;
-    background: rgba(79,255,176,0.08); border: 1px solid rgba(79,255,176,0.25);
-    border-radius: 4px; padding: 2px 8px 2px 10px; font-size: 11px; color: var(--accent);
-    font-family: var(--mono); white-space: nowrap; max-width: 200px;
-  }
+  .cs-tag { display: inline-flex; align-items: center; gap: 5px; background: rgba(79,255,176,0.08); border: 1px solid rgba(79,255,176,0.25); border-radius: 4px; padding: 2px 8px 2px 10px; font-size: 11px; color: var(--accent); font-family: var(--mono); white-space: nowrap; max-width: 200px; }
   .cs-tag span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .cs-tag .rm { cursor: pointer; opacity: 0.55; font-size: 14px; line-height: 1; padding: 0 1px; transition: opacity 0.15s, color 0.15s; flex-shrink: 0; }
   .cs-tag .rm:hover { opacity: 1; color: var(--accent3); }
-
   .cs-tag.bt { background: rgba(123,111,240,0.1); border-color: rgba(123,111,240,0.3); color: var(--accent2); }
-
   .cs-caret { width: 16px; height: 16px; color: var(--text-dim); transition: transform 0.2s, color 0.2s; flex-shrink: 0; }
   .cs-trigger.is-open .cs-caret { transform: rotate(180deg); color: var(--accent); }
   .cs-trigger.branch-trigger.is-open .cs-caret { color: var(--accent2); }
-
-  .cs-panel {
-    display: none; position: absolute; top: calc(100% - 1px); left: 0; right: 0;
-    background: #0f1119; border: 1px solid var(--accent); border-top: none;
-    border-radius: 0 0 6px 6px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 4px 16px rgba(79,255,176,0.04);
-    z-index: 9999; overflow: hidden;
-    animation: panelIn 0.14s ease;
-  }
+  .cs-panel { display: none; position: absolute; top: calc(100% - 1px); left: 0; right: 0; background: #0f1119; border: 1px solid var(--accent); border-top: none; border-radius: 0 0 6px 6px; box-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 4px 16px rgba(79,255,176,0.04); z-index: 9999; overflow: hidden; animation: panelIn 0.14s ease; }
   .cs-panel.bp { border-color: var(--accent2); box-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 4px 16px rgba(123,111,240,0.06); }
   .cs-panel.is-open { display: block; }
-
   @keyframes panelIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
-
-  .cs-searchbox {
-    display: flex; align-items: center; gap: 8px;
-    padding: 9px 12px; border-bottom: 1px solid var(--border);
-  }
+  .cs-searchbox { display: flex; align-items: center; gap: 8px; padding: 9px 12px; border-bottom: 1px solid var(--border); }
   .cs-searchbox svg { color: var(--text-dim); flex-shrink: 0; }
-  .cs-searchbox input {
-    flex: 1; background: transparent; border: none; padding: 0; font-size: 12px;
-    color: var(--text); outline: none; font-family: var(--mono);
-  }
+  .cs-searchbox input { flex: 1; background: transparent; border: none; padding: 0; font-size: 12px; color: var(--text); outline: none; font-family: var(--mono); }
   .cs-searchbox input::placeholder { color: var(--text-dim); }
-
-  .cs-all-row {
-    display: flex; align-items: center; gap: 10px; padding: 8px 14px;
-    border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.1s;
-  }
+  .cs-all-row { display: flex; align-items: center; gap: 10px; padding: 8px 14px; border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.1s; }
   .cs-all-row:hover { background: rgba(255,255,255,0.03); }
   .cs-all-label { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--text-dim); }
-
   .cs-list { max-height: 220px; overflow-y: auto; padding: 4px 0; scrollbar-width: thin; scrollbar-color: var(--border-bright) transparent; }
   .cs-list::-webkit-scrollbar { width: 3px; }
   .cs-list::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 4px; }
-
-  .cs-opt {
-    display: flex; align-items: center; gap: 10px; padding: 9px 14px;
-    cursor: pointer; transition: background 0.1s, border-left-color 0.1s;
-    border-left: 2px solid transparent;
-  }
+  .cs-opt { display: flex; align-items: center; gap: 10px; padding: 9px 14px; cursor: pointer; transition: background 0.1s, border-left-color 0.1s; border-left: 2px solid transparent; }
   .cs-opt:hover { background: rgba(79,255,176,0.04); border-left-color: var(--accent); }
   .cs-opt.sel { background: rgba(79,255,176,0.07); border-left-color: var(--accent); }
   .cs-opt.bo:hover { background: rgba(123,111,240,0.05); border-left-color: var(--accent2); }
   .cs-opt.bo.sel { background: rgba(123,111,240,0.09); border-left-color: var(--accent2); }
-
-  .cs-chk {
-    width: 14px; height: 14px; border: 1px solid var(--border-bright); border-radius: 3px;
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    transition: all 0.15s;
-  }
+  .cs-chk { width: 14px; height: 14px; border: 1px solid var(--border-bright); border-radius: 3px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.15s; }
   .cs-opt.sel .cs-chk { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 6px rgba(79,255,176,0.4); }
   .cs-opt.bo.sel .cs-chk { background: var(--accent2); border-color: var(--accent2); box-shadow: 0 0 6px rgba(123,111,240,0.4); }
   .cs-chk svg { display: none; }
   .cs-opt.sel .cs-chk svg { display: block; }
-
   .cs-opt-text { font-size: 12px; color: var(--text-muted); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .cs-opt:hover .cs-opt-text, .cs-opt.sel .cs-opt-text { color: var(--text); }
-
-  .cs-badge {
-    font-size: 9px; padding: 2px 7px; border-radius: 20px;
-    background: var(--surface2); color: var(--text-dim); border: 1px solid var(--border);
-    white-space: nowrap; letter-spacing: 0.4px;
-  }
-
+  .cs-badge { font-size: 9px; padding: 2px 7px; border-radius: 20px; background: var(--surface2); color: var(--text-dim); border: 1px solid var(--border); white-space: nowrap; letter-spacing: 0.4px; }
   .cs-spin-row { display: flex; align-items: center; gap: 10px; padding: 18px 14px; color: var(--text-muted); font-size: 12px; }
   .cs-mini-spin { width: 13px; height: 13px; border: 1.5px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: sp 0.7s linear infinite; }
   @keyframes sp { to { transform: rotate(360deg); } }
-
   .cs-empty-msg { padding: 16px 14px; color: var(--text-dim); font-size: 12px; text-align: center; }
-
-  /* All-checkbox */
   .cs-all-chk { width: 14px; height: 14px; border: 1px solid var(--border-bright); border-radius: 3px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .cs-all-chk svg { display: none; }
   .cs-all-chk.checked { background: rgba(79,255,176,0.15); border-color: rgba(79,255,176,0.4); }
   .cs-all-chk.checked svg { display: block; }
 
-  /* ── Branch Grid ── */
   .branch-grid { margin-top: 20px; display: none; }
   .branch-grid-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
   .branch-grid-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
   .branch-rows { display: flex; flex-direction: column; gap: 10px; }
-
-  .branch-row {
-    display: grid; grid-template-columns: 1fr 24px 1fr; align-items: center; gap: 10px;
-    background: var(--surface2); border: 1px solid var(--border); border-radius: 6px;
-    padding: 10px 14px; animation: rowIn 0.2s ease;
-  }
+  .branch-row { display: grid; grid-template-columns: 1fr 24px 1fr; align-items: center; gap: 10px; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px; animation: rowIn 0.2s ease; }
   @keyframes rowIn { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:none; } }
-
   .br-repo-name { font-size: 12px; color: var(--accent); font-family: var(--mono); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .br-repo-name em { color: var(--text-dim); font-style: normal; font-size: 11px; }
   .br-arrow { color: var(--text-dim); font-size: 12px; text-align: center; }
 
-  /* ── Fetch row ── */
   .fetch-row { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: end; margin-top: 16px; }
-
-  .btn-action {
-    padding: 10px 18px; background: transparent; border: 1px solid var(--border-bright);
-    border-radius: 6px; color: var(--text-muted); font-family: var(--mono); font-size: 11px;
-    letter-spacing: 1px; text-transform: uppercase; cursor: pointer; white-space: nowrap;
-    transition: all 0.2s; display: flex; align-items: center; gap: 6px;
-  }
+  .btn-action { padding: 10px 18px; background: transparent; border: 1px solid var(--border-bright); border-radius: 6px; color: var(--text-muted); font-family: var(--mono); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; white-space: nowrap; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
   .btn-action:hover { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 12px rgba(79,255,176,0.1); }
 
-  /* ── Commits ── */
   .commits-preview { display: none; margin-top: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
   .commits-preview.vis { display: block; }
   .commits-hdr { padding: 12px 20px; border-bottom: 1px solid var(--border); font-size: 11px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center; }
@@ -271,125 +198,43 @@
   .btn-actions { display: flex; gap: 8px; flex-wrap: wrap; }
   .btn-sm { padding: 8px 16px; border-radius: 6px; font-family: var(--mono); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; border: 1px solid var(--border); background: var(--surface2); color: var(--text-muted); transition: all 0.15s; }
   .btn-sm:hover { border-color: var(--accent); color: var(--accent); }
-  .btn-outlook {
-    border-color: rgba(123,111,240,0.4) !important;
-    color: var(--accent2) !important;
-    background: rgba(123,111,240,0.08) !important;
-  }
-  .btn-outlook:hover {
-    border-color: var(--accent2) !important;
-    color: #fff !important;
-    background: rgba(123,111,240,0.18) !important;
-    box-shadow: 0 0 12px rgba(123,111,240,0.2);
-  }
+  .btn-outlook { border-color: rgba(123,111,240,0.4) !important; color: var(--accent2) !important; background: rgba(123,111,240,0.08) !important; }
+  .btn-outlook:hover { border-color: var(--accent2) !important; color: #fff !important; background: rgba(123,111,240,0.18) !important; box-shadow: 0 0 12px rgba(123,111,240,0.2); }
 
-  /* Split button container */
-  .outlook-split {
-    position: relative;
-    display: flex;
-    align-items: stretch;
-    gap: 0;
-  }
-  .outlook-main {
-    border-radius: 6px 0 0 6px !important;
-    border-right: none !important;
-    white-space: nowrap;
-  }
-  .outlook-caret {
-    border-radius: 0 6px 6px 0 !important;
-    padding: 8px 10px !important;
-    border-left: 1px solid rgba(123,111,240,0.25) !important;
-    min-width: 30px;
-    display: flex; align-items: center; justify-content: center;
-  }
+  .outlook-split { position: relative; display: flex; align-items: stretch; gap: 0; }
+  .outlook-main { border-radius: 6px 0 0 6px !important; border-right: none !important; white-space: nowrap; }
+  .outlook-caret { border-radius: 0 6px 6px 0 !important; padding: 8px 10px !important; border-left: 1px solid rgba(123,111,240,0.25) !important; min-width: 30px; display: flex; align-items: center; justify-content: center; }
   .outlook-caret svg { transition: transform 0.2s; }
   .outlook-split.menu-open .outlook-caret svg { transform: rotate(180deg); }
-
-  /* Outlook dropdown menu */
-  .outlook-menu {
-    display: none;
-    position: absolute;
-    top: calc(100% + 6px);
-    right: 0;
-    width: 310px;
-    background: #0f1119;
-    border: 1px solid var(--accent2);
-    border-radius: 8px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(123,111,240,0.06);
-    z-index: 9999;
-    overflow: hidden;
-    animation: menuIn 0.15s ease;
-  }
+  .outlook-menu { display: none; position: absolute; top: calc(100% + 6px); right: 0; width: 310px; background: #0f1119; border: 1px solid var(--accent2); border-radius: 8px; box-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(123,111,240,0.06); z-index: 9999; overflow: hidden; animation: menuIn 0.15s ease; }
   .outlook-menu.open { display: block; }
   @keyframes menuIn { from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:none} }
-
-  .om-header {
-    padding: 10px 14px 8px;
-    font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
-    color: var(--text-dim); border-bottom: 1px solid var(--border);
-  }
-
-  .om-opt {
-    width: 100%; display: flex; align-items: flex-start; gap: 12px;
-    padding: 12px 14px; cursor: pointer; background: transparent; border: none;
-    border-left: 2px solid transparent; text-align: left; font-family: var(--mono);
-    transition: background 0.1s, border-left-color 0.1s;
-  }
+  .om-header { padding: 10px 14px 8px; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-dim); border-bottom: 1px solid var(--border); }
+  .om-opt { width: 100%; display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; cursor: pointer; background: transparent; border: none; border-left: 2px solid transparent; text-align: left; font-family: var(--mono); transition: background 0.1s, border-left-color 0.1s; }
   .om-opt:hover { background: rgba(123,111,240,0.06); border-left-color: var(--accent2); }
   .om-opt.active { background: rgba(123,111,240,0.1); border-left-color: var(--accent2); }
-
-  .om-icon {
-    width: 28px; height: 28px; border-radius: 6px;
-    background: rgba(123,111,240,0.12); border: 1px solid rgba(123,111,240,0.25);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--accent2); flex-shrink: 0; margin-top: 1px;
-  }
+  .om-icon { width: 28px; height: 28px; border-radius: 6px; background: rgba(123,111,240,0.12); border: 1px solid rgba(123,111,240,0.25); display: flex; align-items: center; justify-content: center; color: var(--accent2); flex-shrink: 0; margin-top: 1px; }
   .om-opt.active .om-icon { background: rgba(123,111,240,0.2); }
   .om-icon-office { background: rgba(0,120,212,0.12) !important; border-color: rgba(0,120,212,0.3) !important; color: #3fa0e8 !important; }
   .om-opt.active .om-icon-office { background: rgba(0,120,212,0.22) !important; }
   .om-icon-live { background: rgba(16,174,132,0.12) !important; border-color: rgba(16,174,132,0.3) !important; color: #10ae84 !important; }
   .om-opt.active .om-icon-live { background: rgba(16,174,132,0.22) !important; }
-
   .om-text { flex: 1; min-width: 0; }
   .om-name { display: block; font-size: 12px; color: var(--text); margin-bottom: 2px; }
   .om-desc { display: block; font-size: 10px; color: var(--text-dim); }
-
-  .om-check {
-    width: 16px; height: 16px; display: flex; align-items: center; justify-content: center;
-    color: var(--accent2); flex-shrink: 0; margin-top: 4px;
-  }
+  .om-check { width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; color: var(--accent2); flex-shrink: 0; margin-top: 4px; }
   .om-check svg { display: none; }
   .om-opt.active .om-check svg { display: block; }
-
-  .om-custom-url {
-    padding: 0 14px 12px;
-    display: flex; gap: 8px;
-  }
-  .om-url-input {
-    flex: 1; background: var(--bg); border: 1px solid var(--border); border-radius: 5px;
-    color: var(--text); font-family: var(--mono); font-size: 11px;
-    padding: 7px 10px; outline: none; transition: border-color 0.15s;
-  }
+  .om-custom-url { padding: 0 14px 12px; display: flex; gap: 8px; }
+  .om-url-input { flex: 1; background: var(--bg); border: 1px solid var(--border); border-radius: 5px; color: var(--text); font-family: var(--mono); font-size: 11px; padding: 7px 10px; outline: none; transition: border-color 0.15s; }
   .om-url-input:focus { border-color: var(--accent2); }
-  .om-url-save {
-    padding: 7px 12px; background: rgba(123,111,240,0.15); border: 1px solid rgba(123,111,240,0.35);
-    border-radius: 5px; color: var(--accent2); font-family: var(--mono); font-size: 11px;
-    cursor: pointer; white-space: nowrap; transition: all 0.15s;
-  }
+  .om-url-save { padding: 7px 12px; background: rgba(123,111,240,0.15); border: 1px solid rgba(123,111,240,0.35); border-radius: 5px; color: var(--accent2); font-family: var(--mono); font-size: 11px; cursor: pointer; white-space: nowrap; transition: all 0.15s; }
   .om-url-save:hover { background: rgba(123,111,240,0.25); color: #fff; }
-
   .om-divider { height: 1px; background: var(--border); margin: 0; }
-  .om-footer {
-    padding: 8px 14px; font-size: 10px; color: var(--text-dim);
-    display: flex; gap: 6px; align-items: center;
-  }
+  .om-footer { padding: 8px 14px; font-size: 10px; color: var(--text-dim); display: flex; gap: 6px; align-items: center; }
 
   /* Hours Budget Bar */
-  .hours-budget-bar {
-    display: flex; align-items: center; justify-content: space-between; gap: 16px;
-    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-    padding: 12px 20px; margin-bottom: 16px; flex-wrap: wrap;
-  }
+  .hours-budget-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; margin-bottom: 16px; flex-wrap: wrap; }
   .hb-left { display: flex; flex-direction: column; gap: 2px; }
   .hb-label { font-size: 11px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
   .hb-hint { font-size: 10px; color: var(--text-dim); }
@@ -402,22 +247,13 @@
   .hb-remaining { font-size: 11px; color: var(--text-dim); white-space: nowrap; }
 
   /* Editable hours */
-  .hours-display {
-    display: inline-flex; align-items: center; gap: 5px; cursor: pointer;
-    padding: 3px 6px; border-radius: 4px; transition: background 0.15s;
-    border: 1px solid transparent;
-  }
+  .hours-display { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; padding: 3px 6px; border-radius: 4px; transition: background 0.15s; border: 1px solid transparent; }
   .hours-display:hover { background: rgba(79,255,176,0.06); border-color: rgba(79,255,176,0.2); }
   .hours-edit-icon { opacity: 0; transition: opacity 0.15s; color: var(--accent); flex-shrink: 0; }
   .hours-display:hover .hours-edit-icon { opacity: 1; }
   .hours-val { color: var(--text); font-weight: 500; }
   .hours-edit-wrap { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; }
-  .hours-input {
-    width: 70px; background: var(--bg); border: 1px solid var(--accent);
-    border-radius: 4px; color: var(--accent); font-family: var(--mono); font-size: 13px;
-    padding: 4px 8px; outline: none; text-align: right;
-    box-shadow: 0 0 0 2px rgba(79,255,176,0.1);
-  }
+  .hours-input { width: 70px; background: var(--bg); border: 1px solid var(--accent); border-radius: 4px; color: var(--accent); font-family: var(--mono); font-size: 13px; padding: 4px 8px; outline: none; text-align: right; box-shadow: 0 0 0 2px rgba(79,255,176,0.1); }
   .hours-input::-webkit-inner-spin-button { opacity: 0.5; }
   .hours-max-hint { font-size: 9px; color: var(--text-dim); white-space: nowrap; }
 
@@ -479,15 +315,12 @@
 
   <div class="config-panel">
     <div class="panel-title">01 — Configuration</div>
-
     <div class="tabs">
       <button class="tab active" data-tab="github" onclick="switchTab(this)">GitHub</button>
       <button class="tab" data-tab="gitlab" onclick="switchTab(this)">GitLab</button>
     </div>
 
-    <!-- ── GitHub ── -->
     <div id="tab-github" class="tab-content active">
-
       <div class="grid-2">
         <div class="field">
           <label>GitHub Personal Access Token</label>
@@ -501,8 +334,6 @@
           </button>
         </div>
       </div>
-
-      <!-- Multi-Repo Select -->
       <div class="field row-gap">
         <label>Repositories <span style="color:var(--text-dim);font-size:9px;letter-spacing:0;">(select one or more)</span></label>
         <div class="cs-wrap" id="repo-wrap">
@@ -530,14 +361,10 @@
           </div>
         </div>
       </div>
-
-      <!-- Per-repo branch pickers -->
       <div class="branch-grid" id="branch-grid">
         <div class="branch-grid-label">Branch per Repository</div>
         <div class="branch-rows" id="branch-rows"></div>
       </div>
-
-      <!-- Date + Fetch -->
       <div class="fetch-row">
         <div class="field">
           <label>Date</label>
@@ -553,7 +380,6 @@
       </div>
     </div>
 
-    <!-- ── GitLab ── -->
     <div id="tab-gitlab" class="tab-content">
       <div class="grid-2">
         <div class="field">
@@ -587,7 +413,6 @@
       </div>
     </div>
 
-    <!-- Commits Preview -->
     <div class="commits-preview" id="commits-preview">
       <div class="commits-hdr">
         <span>Fetched Commits</span>
@@ -598,7 +423,6 @@
     <div class="error-box" id="fetch-error"></div>
   </div>
 
-  <!-- Step 2 -->
   <div class="prompt-panel">
     <div class="panel-title">02 — Report Details &amp; Prompt</div>
     <div class="grid-3">
@@ -629,7 +453,6 @@
     <div class="spinner"></div>
     <div class="loading-text">Generating report<span class="loading-dots"></span></div>
   </div>
-
   <div class="error-box" id="generate-error"></div>
 
   <div class="report-wrapper" id="report-wrapper">
@@ -639,8 +462,7 @@
         <button class="btn-sm" onclick="copyTable()">Copy Table</button>
         <button class="btn-sm" onclick="copyFullReport()">Copy Full Report</button>
         <button class="btn-sm" onclick="printReport()">Print / Export PDF</button>
-        <!-- Outlook Split Button -->
-        <div class="outlook-split" id="outlook-split">
+        <!-- <div class="outlook-split" id="outlook-split">
           <button class="btn-sm btn-outlook outlook-main" onclick="openOutlookWithMode()" id="outlook-main-btn">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:4px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             <span id="outlook-main-label">Open in Outlook</span>
@@ -648,93 +470,53 @@
           <button class="btn-sm btn-outlook outlook-caret" onclick="toggleOutlookMenu(event)" title="Choose how to open">
             <svg width="10" height="10" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
           </button>
-          <!-- Dropdown Menu -->
           <div class="outlook-menu" id="outlook-menu">
             <div class="om-header">Choose where to open</div>
-
             <button class="om-opt" id="om-desktop" onclick="setOutlookMode('desktop')">
-              <div class="om-icon">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-              </div>
-              <div class="om-text">
-                <span class="om-name">Outlook Desktop App</span>
-                <span class="om-desc">Installed Outlook / default mail client (mailto:)</span>
-              </div>
-              <div class="om-check" id="om-desktop-chk">
-                <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
+              <div class="om-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+              <div class="om-text"><span class="om-name">Outlook Desktop App</span><span class="om-desc">Installed Outlook / default mail client (mailto:)</span></div>
+              <div class="om-check" id="om-desktop-chk"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
             </button>
-
             <button class="om-opt" id="om-web" onclick="setOutlookMode('web')">
-              <div class="om-icon om-icon-office">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
-              </div>
-              <div class="om-text">
-                <span class="om-name">Office 365 Web</span>
-                <span class="om-desc">outlook.office.com — work/school account</span>
-              </div>
-              <div class="om-check" id="om-web-chk">
-                <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
+              <div class="om-icon om-icon-office"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div>
+              <div class="om-text"><span class="om-name">Office 365 Web</span><span class="om-desc">outlook.office.com — work/school account</span></div>
+              <div class="om-check" id="om-web-chk"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
             </button>
-
             <button class="om-opt" id="om-web-personal" onclick="setOutlookMode('web-personal')">
-              <div class="om-icon om-icon-live">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
-              </div>
-              <div class="om-text">
-                <span class="om-name">Outlook.com / Hotmail</span>
-                <span class="om-desc">outlook.live.com — personal Microsoft account</span>
-              </div>
-              <div class="om-check" id="om-web-personal-chk">
-                <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
+              <div class="om-icon om-icon-live"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+              <div class="om-text"><span class="om-name">Outlook.com / Hotmail</span><span class="om-desc">outlook.live.com — personal Microsoft account</span></div>
+              <div class="om-check" id="om-web-personal-chk"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
             </button>
-
             <button class="om-opt" id="om-custom" onclick="setOutlookMode('custom')">
-              <div class="om-icon">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
-              </div>
-              <div class="om-text">
-                <span class="om-name">Custom / Company OWA</span>
-                <span class="om-desc">Your organisation's private Outlook web address</span>
-              </div>
-              <div class="om-check" id="om-custom-chk">
-                <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
+              <div class="om-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></div>
+              <div class="om-text"><span class="om-name">Custom / Company OWA</span><span class="om-desc">Your organisation's private Outlook web address</span></div>
+              <div class="om-check" id="om-custom-chk"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
             </button>
-
             <div class="om-custom-url" id="om-custom-url-row" style="display:none;">
               <input type="text" id="om-custom-url-input" class="om-url-input" placeholder="https://mail.company.com">
               <button class="om-url-save" onclick="saveCustomUrl()">Save</button>
             </div>
-
             <div class="om-divider"></div>
-            <div class="om-footer">
-              <span>Active:</span>
-              <span id="om-last-used" style="color:var(--accent2);">Desktop App</span>
-            </div>
+            <div class="om-footer"><span>Active:</span><span id="om-last-used" style="color:var(--accent2);">Desktop App</span></div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
 
-    <!-- Hours Budget Bar -->
     <div class="hours-budget-bar" id="hours-budget-bar">
       <div class="hb-left">
         <span class="hb-label">Daily Hours Budget</span>
         <span class="hb-hint">Click any hour value in the table to edit · Max 8h total</span>
       </div>
       <div class="hb-right">
-        <div class="hb-track">
-          <div class="hb-fill" id="hb-fill"></div>
-        </div>
+        <div class="hb-track"><div class="hb-fill" id="hb-fill"></div></div>
         <span class="hb-used" id="hb-used">0h</span>
         <span class="hb-sep">/</span>
         <span class="hb-max">8h</span>
         <span class="hb-remaining" id="hb-remaining"></span>
       </div>
     </div>
+
     <div class="report-container">
       <div class="report-project-title" id="report-title"></div>
       <div class="report-summary-msg" id="report-summary"></div>
@@ -759,29 +541,16 @@
 
 </div>
 <script>
-/* ══════════════════════════════════════════
-   STATE
-══════════════════════════════════════════ */
 let fetchedCommits = [];
 let currentTab = 'github';
-
-// Multi-select: repoState = { options:[{value,label,meta}], selected: Set }
 const repoState = { options: [], selected: new Set() };
-
-// Single-select per repo: branchState[repoKey] = { options:[{value,label}], selected:'' }
 const branchState = {};
-
-// Lookup branch select ID from repo name
 function branchId(repo) { return 'br_' + repo.replace(/[^a-z0-9]/gi, '_'); }
 
-/* ══════════════════════════════════════════
-   INIT
-══════════════════════════════════════════ */
 (function() {
   const today = new Date().toISOString().split('T')[0];
   document.getElementById('gh-date').value = today;
   document.getElementById('gl-date').value = today;
-
   try {
     const p = localStorage.getItem('devlog_project');
     const d = localStorage.getItem('devlog_dev_name');
@@ -792,25 +561,15 @@ function branchId(repo) { return 'br_' + repo.replace(/[^a-z0-9]/gi, '_'); }
     if (t) document.getElementById('gh-token').value = t;
     if (re) document.getElementById('receiver-email').value = re;
   } catch {}
-
   document.addEventListener('click', function(e) {
-    // Close repo panel
     const rw = document.getElementById('repo-wrap');
     if (rw && !rw.contains(e.target)) closePanel('repo');
-
-    // Close any branch panels
     document.querySelectorAll('[id^="br_"]').forEach(el => {
-      if (el.id.endsWith('-wrap') && !el.contains(e.target)) {
-        const bid = el.id.replace('-wrap', '');
-        closePanel(bid);
-      }
+      if (el.id.endsWith('-wrap') && !el.contains(e.target)) closePanel(el.id.replace('-wrap', ''));
     });
   });
 })();
 
-/* ══════════════════════════════════════════
-   TAB
-══════════════════════════════════════════ */
 function switchTab(btn) {
   const tab = btn.dataset.tab;
   currentTab = tab;
@@ -822,15 +581,11 @@ function switchTab(btn) {
   document.getElementById('commits-preview').classList.remove('vis');
 }
 
-/* ══════════════════════════════════════════
-   PANEL OPEN/CLOSE
-══════════════════════════════════════════ */
 function togglePanel(id) {
   const panel = document.getElementById(id + '-panel');
   const trigger = document.getElementById(id + '-trigger');
   if (!panel) return;
   const open = panel.classList.contains('is-open');
-  // close all
   closeAllPanels();
   if (!open) {
     panel.classList.add('is-open');
@@ -839,34 +594,24 @@ function togglePanel(id) {
     if (search) { search.value = ''; renderList(id); setTimeout(() => search.focus(), 50); }
   }
 }
-
 function closePanel(id) {
   const panel = document.getElementById(id + '-panel');
   const trigger = document.getElementById(id + '-trigger');
   if (panel) panel.classList.remove('is-open');
   if (trigger) trigger.classList.remove('is-open');
 }
-
 function closeAllPanels() {
   document.querySelectorAll('.cs-panel.is-open').forEach(p => p.classList.remove('is-open'));
   document.querySelectorAll('.cs-trigger.is-open').forEach(t => t.classList.remove('is-open'));
 }
 
-/* ══════════════════════════════════════════
-   REPO MULTI-SELECT
-══════════════════════════════════════════ */
 function setRepoOptions(opts) {
   repoState.options = opts;
   repoState.selected.forEach(v => { if (!opts.find(o => o.value === v)) repoState.selected.delete(v); });
   renderList('repo');
   renderRepoTags();
 }
-
-function renderList(id) {
-  if (id === 'repo') renderRepoList();
-  else renderBranchList(id);
-}
-
+function renderList(id) { if (id === 'repo') renderRepoList(); else renderBranchList(id); }
 function filterList(id) { renderList(id); }
 
 function renderRepoList() {
@@ -875,33 +620,19 @@ function renderRepoList() {
   const q = search.toLowerCase();
   const spin = document.getElementById('repo-spin');
   const empty = document.getElementById('repo-empty');
-
   if (spin) spin.style.display = 'none';
   container.querySelectorAll('.cs-opt').forEach(e => e.remove());
-
-  const filtered = repoState.options.filter(o =>
-    o.label.toLowerCase().includes(q) || (o.meta || '').toLowerCase().includes(q)
-  );
-
+  const filtered = repoState.options.filter(o => o.label.toLowerCase().includes(q) || (o.meta || '').toLowerCase().includes(q));
   if (empty) empty.style.display = filtered.length === 0 ? 'block' : 'none';
-  if (empty && filtered.length === 0) {
-    empty.textContent = q ? 'No repositories match.' : (repoState.options.length === 0 ? 'Load repositories first.' : 'No repositories match.');
-  }
-
+  if (empty && filtered.length === 0) empty.textContent = q ? 'No repositories match.' : (repoState.options.length === 0 ? 'Load repositories first.' : 'No repositories match.');
   filtered.forEach(opt => {
     const sel = repoState.selected.has(opt.value);
     const div = document.createElement('div');
     div.className = 'cs-opt' + (sel ? ' sel' : '');
-    div.innerHTML = `
-      <div class="cs-chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3.5 6L8 1" stroke="#0d0f14" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <span class="cs-opt-text">${esc(opt.label)}</span>
-      ${opt.meta ? `<span class="cs-badge">${esc(opt.meta)}</span>` : ''}
-    `;
+    div.innerHTML = `<div class="cs-chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3.5 6L8 1" stroke="#0d0f14" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="cs-opt-text">${esc(opt.label)}</span>${opt.meta ? `<span class="cs-badge">${esc(opt.meta)}</span>` : ''}`;
     div.addEventListener('click', e => { e.stopPropagation(); toggleRepo(opt.value); });
     container.appendChild(div);
   });
-
-  // Update all-check
   const allChk = document.getElementById('repo-all-chk');
   if (allChk) {
     const allSel = repoState.options.length > 0 && repoState.options.every(o => repoState.selected.has(o.value));
@@ -910,23 +641,15 @@ function renderRepoList() {
 }
 
 function toggleRepo(val) {
-  if (repoState.selected.has(val)) repoState.selected.delete(val);
-  else repoState.selected.add(val);
-  renderRepoList();
-  renderRepoTags();
-  syncBranchGrid();
+  if (repoState.selected.has(val)) repoState.selected.delete(val); else repoState.selected.add(val);
+  renderRepoList(); renderRepoTags(); syncBranchGrid();
 }
-
 function toggleAll(id) {
   if (id !== 'repo') return;
   const allSel = repoState.options.every(o => repoState.selected.has(o.value));
-  if (allSel) repoState.selected.clear();
-  else repoState.options.forEach(o => repoState.selected.add(o.value));
-  renderRepoList();
-  renderRepoTags();
-  syncBranchGrid();
+  if (allSel) repoState.selected.clear(); else repoState.options.forEach(o => repoState.selected.add(o.value));
+  renderRepoList(); renderRepoTags(); syncBranchGrid();
 }
-
 function renderRepoTags() {
   const tagsEl = document.getElementById('repo-tags');
   const ph = document.getElementById('repo-ph');
@@ -943,91 +666,40 @@ function renderRepoTags() {
     tagsEl.appendChild(tag);
   });
 }
+function removeRepo(e, val) { e.stopPropagation(); repoState.selected.delete(val); renderRepoTags(); renderRepoList(); syncBranchGrid(); }
 
-function removeRepo(e, val) {
-  e.stopPropagation();
-  repoState.selected.delete(val);
-  renderRepoTags();
-  renderRepoList();
-  syncBranchGrid();
-}
-
-/* ══════════════════════════════════════════
-   BRANCH GRID (per selected repo)
-══════════════════════════════════════════ */
 function syncBranchGrid() {
   const grid = document.getElementById('branch-grid');
   const rows = document.getElementById('branch-rows');
   const selected = [...repoState.selected];
-
   grid.style.display = selected.length > 0 ? 'block' : 'none';
-
-  // Remove rows for deselected repos
-  [...rows.querySelectorAll('[data-repo]')].forEach(row => {
-    if (!selected.includes(row.dataset.repo)) row.remove();
-  });
-
+  [...rows.querySelectorAll('[data-repo]')].forEach(row => { if (!selected.includes(row.dataset.repo)) row.remove(); });
   const token = document.getElementById('gh-token').value.trim();
-
   for (const repo of selected) {
     if (rows.querySelector(`[data-repo="${CSS.escape(repo)}"]`)) continue;
     const bid = branchId(repo);
     const [owner, name] = repo.includes('/') ? repo.split('/') : ['', repo];
-
     const row = document.createElement('div');
-    row.className = 'branch-row';
-    row.dataset.repo = repo;
-    row.innerHTML = `
-      <div class="br-repo-name"><em>${esc(owner)}/</em>${esc(name)}</div>
-      <div class="br-arrow">→</div>
-      <div class="cs-wrap" id="${bid}-wrap">
-        <div class="cs-trigger branch-trigger" id="${bid}-trigger" onclick="togglePanel('${bid}')">
-          <div class="cs-tags" id="${bid}-tags">
-            <span class="cs-ph" id="${bid}-ph">loading…</span>
-          </div>
-          <svg class="cs-caret" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
-        </div>
-        <div class="cs-panel bp" id="${bid}-panel">
-          <div class="cs-searchbox">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <input type="text" id="${bid}-search" placeholder="Search branches…" oninput="renderBranchList('${bid}')" onclick="event.stopPropagation()">
-          </div>
-          <div class="cs-list" id="${bid}-list">
-            <div class="cs-spin-row" id="${bid}-spin"><div class="cs-mini-spin"></div>Loading branches…</div>
-            <div class="cs-empty-msg" id="${bid}-empty" style="display:none;">No branches found.</div>
-          </div>
-        </div>
-      </div>
-    `;
+    row.className = 'branch-row'; row.dataset.repo = repo;
+    row.innerHTML = `<div class="br-repo-name"><em>${esc(owner)}/</em>${esc(name)}</div><div class="br-arrow">→</div><div class="cs-wrap" id="${bid}-wrap"><div class="cs-trigger branch-trigger" id="${bid}-trigger" onclick="togglePanel('${bid}')"><div class="cs-tags" id="${bid}-tags"><span class="cs-ph" id="${bid}-ph">loading…</span></div><svg class="cs-caret" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg></div><div class="cs-panel bp" id="${bid}-panel"><div class="cs-searchbox"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" id="${bid}-search" placeholder="Search branches…" oninput="renderBranchList('${bid}')" onclick="event.stopPropagation()"></div><div class="cs-list" id="${bid}-list"><div class="cs-spin-row" id="${bid}-spin"><div class="cs-mini-spin"></div>Loading branches…</div><div class="cs-empty-msg" id="${bid}-empty" style="display:none;">No branches found.</div></div></div></div>`;
     rows.appendChild(row);
-
     branchState[bid] = { options: [], selected: 'main' };
-    if (token) fetchBranches(token, repo, bid);
-    else initBranchOpts(bid, [{ value:'main', label:'main' }, { value:'master', label:'master' }]);
+    if (token) fetchBranches(token, repo, bid); else initBranchOpts(bid, [{ value:'main', label:'main' }, { value:'master', label:'master' }]);
   }
 }
-
 async function fetchBranches(token, repo, bid) {
   try {
-    const res = await fetch(`https://api.github.com/repos/${repo}/branches?per_page=100`, {
-      headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' }
-    });
+    const res = await fetch(`https://api.github.com/repos/${repo}/branches?per_page=100`, { headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' } });
     const data = res.ok ? await res.json() : [];
-    const opts = data.length ? data.map(b => ({ value: b.name, label: b.name })) : [{ value:'main', label:'main' }];
-    initBranchOpts(bid, opts);
-  } catch {
-    initBranchOpts(bid, [{ value:'main', label:'main' }, { value:'master', label:'master' }]);
-  }
+    initBranchOpts(bid, data.length ? data.map(b => ({ value: b.name, label: b.name })) : [{ value:'main', label:'main' }]);
+  } catch { initBranchOpts(bid, [{ value:'main', label:'main' }, { value:'master', label:'master' }]); }
 }
-
 function initBranchOpts(bid, opts) {
   const spin = document.getElementById(bid + '-spin');
   if (spin) spin.style.display = 'none';
   branchState[bid] = { options: opts, selected: (opts.find(o => o.value==='main') || opts.find(o => o.value==='master') || opts[0] || { value:'main' }).value };
-  renderBranchList(bid);
-  renderBranchTag(bid);
+  renderBranchList(bid); renderBranchTag(bid);
 }
-
 function renderBranchList(bid) {
   const container = document.getElementById(bid + '-list');
   if (!container) return;
@@ -1037,31 +709,19 @@ function renderBranchList(bid) {
   const q = search ? search.value.toLowerCase() : '';
   const state = branchState[bid];
   if (!state) return;
-
   if (spin) spin.style.display = 'none';
   container.querySelectorAll('.cs-opt').forEach(e => e.remove());
   const filtered = state.options.filter(o => o.label.toLowerCase().includes(q));
   if (empty) empty.style.display = filtered.length === 0 ? 'block' : 'none';
-
   filtered.forEach(opt => {
     const sel = state.selected === opt.value;
     const div = document.createElement('div');
     div.className = 'cs-opt bo' + (sel ? ' sel' : '');
-    div.innerHTML = `
-      <div class="cs-chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3.5 6L8 1" stroke="#0d0f14" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <span class="cs-opt-text">${esc(opt.label)}</span>
-    `;
-    div.addEventListener('click', e => {
-      e.stopPropagation();
-      branchState[bid].selected = opt.value;
-      renderBranchTag(bid);
-      renderBranchList(bid);
-      closePanel(bid);
-    });
+    div.innerHTML = `<div class="cs-chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3.5 6L8 1" stroke="#0d0f14" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="cs-opt-text">${esc(opt.label)}</span>`;
+    div.addEventListener('click', e => { e.stopPropagation(); branchState[bid].selected = opt.value; renderBranchTag(bid); renderBranchList(bid); closePanel(bid); });
     container.appendChild(div);
   });
 }
-
 function renderBranchTag(bid) {
   const tagsEl = document.getElementById(bid + '-tags');
   const ph = document.getElementById(bid + '-ph');
@@ -1076,29 +736,20 @@ function renderBranchTag(bid) {
   tagsEl.appendChild(tag);
 }
 
-/* ══════════════════════════════════════════
-   GITHUB FETCH COMMITS
-══════════════════════════════════════════ */
 async function loadRepos() {
   const token = document.getElementById('gh-token').value.trim();
   if (!token) { showFetchErr('GitHub token is required.'); return; }
-
   hideFetchErr();
   const spin = document.getElementById('repo-spin');
   const empty = document.getElementById('repo-empty');
   const panel = document.getElementById('repo-panel');
   const trigger = document.getElementById('repo-trigger');
-
-  panel.classList.add('is-open');
-  trigger.classList.add('is-open');
-  if (spin) { spin.style.display = 'flex'; }
+  panel.classList.add('is-open'); trigger.classList.add('is-open');
+  if (spin) spin.style.display = 'flex';
   if (empty) empty.style.display = 'none';
   document.getElementById('repo-list').querySelectorAll('.cs-opt').forEach(e => e.remove());
-
   try {
-    const res = await fetch('https://api.github.com/user/repos?per_page=100&sort=pushed', {
-      headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' }
-    });
+    const res = await fetch('https://api.github.com/user/repos?per_page=100&sort=pushed', { headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' } });
     if (!res.ok) throw new Error((await res.json()).message || 'GitHub API error');
     const repos = await res.json();
     if (spin) spin.style.display = 'none';
@@ -1115,20 +766,14 @@ async function fetchGitHubCommits() {
   const token = document.getElementById('gh-token').value.trim();
   const date  = document.getElementById('gh-date').value;
   const selectedRepos = [...repoState.selected];
-
   if (!token) { showFetchErr('GitHub token is required.'); return; }
   if (selectedRepos.length === 0) { showFetchErr('Please select at least one repository.'); return; }
   if (!date) { showFetchErr('Please pick a date.'); return; }
-
-  hideFetchErr();
-  fetchedCommits = [];
-
+  hideFetchErr(); fetchedCommits = [];
   const since = date + 'T00:00:00Z';
   const until = date + 'T23:59:59Z';
   const hdrs = { 'Accept': 'application/vnd.github+json', 'Authorization': 'Bearer ' + token };
-  const groups = [];
-  const errors = [];
-
+  const groups = [], errors = [];
   for (const repo of selectedRepos) {
     const bid = branchId(repo);
     const branch = (branchState[bid] && branchState[bid].selected) || 'main';
@@ -1137,31 +782,23 @@ async function fetchGitHubCommits() {
       if (!res.ok) { errors.push(`${repo}: ${(await res.json()).message || 'API error'}`); continue; }
       const data = await res.json();
       const commits = data.map(c => ({ sha: c.sha.slice(0,7), message: c.commit.message.split('\n')[0], author: c.commit.author.name, date: c.commit.author.date, repo, branch }));
-      groups.push({ repo, branch, commits });
-      fetchedCommits.push(...commits);
+      groups.push({ repo, branch, commits }); fetchedCommits.push(...commits);
     } catch(e) { errors.push(`${repo}: ${e.message}`); }
   }
-
   if (errors.length) showFetchErr(errors.join('\n'));
   renderCommitsGrouped(groups);
 }
 
-/* ══════════════════════════════════════════
-   GITLAB
-══════════════════════════════════════════ */
 async function fetchGitLabCommits() {
   const token   = document.getElementById('gl-token').value.trim();
   const project = document.getElementById('gl-project').value.trim();
   const host    = document.getElementById('gl-host').value.trim() || 'gitlab.com';
   const branch  = document.getElementById('gl-branch').value.trim() || 'main';
   const date    = document.getElementById('gl-date').value;
-
   if (!project) { showFetchErr('Please enter a project ID or path'); return; }
-  if (!token)   { showFetchErr('GitLab requires a Personal Access Token'); return; }
+  if (!token) { showFetchErr('GitLab requires a Personal Access Token'); return; }
   hideFetchErr();
-
-  const since = date + 'T00:00:00Z';
-  const until = date + 'T23:59:59Z';
+  const since = date + 'T00:00:00Z', until = date + 'T23:59:59Z';
   try {
     const res = await fetch(`https://${host}/api/v4/projects/${encodeURIComponent(project)}/repository/commits?ref_name=${branch}&since=${since}&until=${until}&per_page=100`, { headers: { 'PRIVATE-TOKEN': token } });
     if (!res.ok) throw new Error((await res.json()).message || 'GitLab API error');
@@ -1171,24 +808,15 @@ async function fetchGitLabCommits() {
   } catch(e) { showFetchErr('GitLab Error: ' + e.message); }
 }
 
-/* ══════════════════════════════════════════
-   COMMITS PREVIEW
-══════════════════════════════════════════ */
 function renderCommitsGrouped(groups) {
   const preview = document.getElementById('commits-preview');
   const list    = document.getElementById('commits-list');
   const badge   = document.getElementById('commits-badge');
-
   preview.classList.add('vis');
   const total = groups.reduce((s, g) => s + g.commits.length, 0);
   badge.textContent = total + ' commit' + (total !== 1 ? 's' : '') + ' · ' + groups.length + ' repo' + (groups.length !== 1 ? 's' : '');
   list.innerHTML = '';
-
-  if (total === 0) {
-    list.innerHTML = '<div class="commit-item"><span class="c-msg" style="color:var(--text-muted)">No commits found for this date.</span></div>';
-    return;
-  }
-
+  if (total === 0) { list.innerHTML = '<div class="commit-item"><span class="c-msg" style="color:var(--text-muted)">No commits found for this date.</span></div>'; return; }
   groups.forEach(({ repo, branch, commits }) => {
     if (!commits.length) return;
     const hdr = document.createElement('div');
@@ -1204,26 +832,19 @@ function renderCommitsGrouped(groups) {
   });
 }
 
-/* ══════════════════════════════════════════
-   GENERATE REPORT
-══════════════════════════════════════════ */
 async function generateReport() {
   const project = document.getElementById('project-name').value.trim() || 'Project';
   const devName = document.getElementById('dev-name').value.trim();
   const extra   = document.getElementById('extra-prompt').value.trim();
-
   if (!devName) { showGenErr('Your Name / Role is required.'); return; }
   if (!fetchedCommits.length && !extra) { showGenErr('Please fetch commits or provide Additional Context before generating.'); return; }
-
   try {
     localStorage.setItem('devlog_project', project);
     if (devName) localStorage.setItem('devlog_dev_name', devName);
     const re = document.getElementById('receiver-email').value.trim();
     if (re) localStorage.setItem('devlog_receiver_email', re);
   } catch {}
-  hideGenErr();
-  setGenerating(true);
-
+  hideGenErr(); setGenerating(true);
   try {
     const res = await fetch('https://generative-ai-learning.vercel.app/api/generate-report', {
       method: 'POST',
@@ -1234,56 +855,41 @@ async function generateReport() {
     const { report } = await res.json();
     if (!report) throw new Error('Malformed response from server.');
     renderReport(report, project, devName);
-  } catch(e) {
-    showGenErr('Error: ' + e.message);
-  } finally { setGenerating(false); }
+  } catch(e) { showGenErr('Error: ' + e.message); }
+  finally { setGenerating(false); }
 }
 
-/* ══════════════════════════════════════════
-   RENDER REPORT
-══════════════════════════════════════════ */
-let currentTasks = []; // live editable task list
+let currentTasks = [];
 
 function renderReport(report, project, devName) {
-  // Normalize total to max 8h and distribute proportionally
   const rawTotal = report.tasks.reduce((s, t) => s + parseFloat(t.hours || 0), 0);
   const MAX_HOURS = 8;
   currentTasks = report.tasks.map(t => {
     let h = parseFloat(t.hours) || 0;
-    if (rawTotal > MAX_HOURS) h = Math.round((h / rawTotal) * MAX_HOURS * 4) / 4; // round to 0.25
+    if (rawTotal > MAX_HOURS) h = Math.round((h / rawTotal) * MAX_HOURS * 4) / 4;
     return { ...t, hours: h };
   });
-  // Re-sum after rounding — distribute leftover to biggest task
   let adjustedTotal = currentTasks.reduce((s, t) => s + t.hours, 0);
   if (rawTotal > MAX_HOURS && adjustedTotal !== MAX_HOURS) {
     const diff = Math.round((MAX_HOURS - adjustedTotal) * 4) / 4;
     const maxIdx = currentTasks.reduce((mi, t, i, arr) => t.hours > arr[mi].hours ? i : mi, 0);
     currentTasks[maxIdx].hours = Math.round((currentTasks[maxIdx].hours + diff) * 4) / 4;
   }
-
   document.getElementById('report-title').textContent = 'Project / Client Name: ' + project;
   const longDate = new Date().toLocaleDateString('en-GB', { day:'2-digit', month:'long', year:'numeric' });
-  document.getElementById('report-summary').textContent =
-    `Date - ${longDate}\nEmployee Name: ${devName || 'Employee'}\nProject / Client Name: ${project}\n\n${report.summary}`;
-
+  document.getElementById('report-summary').textContent = `Date - ${longDate}\nEmployee Name: ${devName || 'Employee'}\nProject / Client Name: ${project}\n\n${report.summary}`;
   rebuildTable();
-
-  const dateStr = new Date().toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' });
-  document.getElementById('report-footer-l').textContent = (devName ? devName + ' · ' : '') + dateStr;
-
+  document.getElementById('report-footer-l').textContent = (devName ? devName + ' · ' : '') + new Date().toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' });
   const rw = document.getElementById('report-wrapper');
   rw.classList.add('vis');
   rw.scrollIntoView({ behavior:'smooth', block:'start' });
 }
 
-function calcTotal() {
-  return Math.round(currentTasks.reduce((s, t) => s + (parseFloat(t.hours)||0), 0) * 4) / 4;
-}
+function calcTotal() { return Math.round(currentTasks.reduce((s, t) => s + (parseFloat(t.hours)||0), 0) * 4) / 4; }
 
 function rebuildTable() {
   const total = calcTotal();
   const tbody = document.getElementById('report-tbody');
-
   tbody.innerHTML = currentTasks.map((t, i) => `
     <tr data-idx="${i}">
       <td>${esc(t.project)}</td>
@@ -1302,24 +908,18 @@ function rebuildTable() {
       <td class="col-hours"><strong id="total-hours-cell">${fmtH(total)}</strong></td>
       <td></td><td></td>
     </tr>`;
-
   updateHoursBudget(total);
   document.getElementById('report-footer-r').textContent = currentTasks.length + ' tasks · ' + fmtH(total) + ' hrs total';
 }
 
-function fmtH(v) {
-  const n = parseFloat(v) || 0;
-  return n % 1 === 0 ? String(n) : n.toFixed(2).replace(/\.?0+$/, '');
-}
+function fmtH(v) { const n = parseFloat(v) || 0; return n % 1 === 0 ? String(n) : n.toFixed(2).replace(/\.?0+$/, ''); }
 
 function updateHoursBudget(total) {
-  const MAX = 8;
-  const pct = Math.min(total / MAX * 100, 100);
+  const MAX = 8, pct = Math.min(total / MAX * 100, 100);
   const fill = document.getElementById('hb-fill');
   const used = document.getElementById('hb-used');
   const rem  = document.getElementById('hb-remaining');
   if (!fill) return;
-
   fill.style.width = pct + '%';
   fill.style.background = total > MAX ? 'var(--accent3)' : total >= MAX * 0.9 ? 'var(--inprogress)' : 'var(--accent)';
   used.textContent = fmtH(total) + 'h';
@@ -1333,22 +933,13 @@ function startEditHours(idx) {
   const MAX = 8;
   const cell = document.querySelector(`.hours-cell[data-idx="${idx}"]`);
   if (!cell || cell.querySelector('input')) return;
-
   const curVal = currentTasks[idx].hours;
   const otherTotal = currentTasks.reduce((s, t, i) => i !== idx ? s + (parseFloat(t.hours)||0) : s, 0);
   const maxAllowed = Math.round((MAX - otherTotal) * 4) / 4;
-
-  cell.innerHTML = `
-    <div class="hours-edit-wrap">
-      <input type="number" class="hours-input" id="hi-${idx}" value="${curVal}" min="0" max="${maxAllowed}" step="0.25"
-        onblur="commitHours(${idx})" onkeydown="hoursKey(event,${idx})">
-      <span class="hours-max-hint">max ${fmtH(maxAllowed)}h</span>
-    </div>`;
+  cell.innerHTML = `<div class="hours-edit-wrap"><input type="number" class="hours-input" id="hi-${idx}" value="${curVal}" min="0" max="${maxAllowed}" step="0.25" onblur="commitHours(${idx})" onkeydown="hoursKey(event,${idx})"><span class="hours-max-hint">max ${fmtH(maxAllowed)}h</span></div>`;
   const inp = document.getElementById('hi-' + idx);
-  inp.focus();
-  inp.select();
+  inp.focus(); inp.select();
 }
-
 function commitHours(idx) {
   const inp = document.getElementById('hi-' + idx);
   if (!inp) return;
@@ -1358,16 +949,13 @@ function commitHours(idx) {
   let val = parseFloat(inp.value);
   if (isNaN(val) || val < 0) val = 0;
   if (val > maxAllowed) val = maxAllowed;
-  val = Math.round(val * 4) / 4; // snap to 0.25
-  currentTasks[idx].hours = val;
+  currentTasks[idx].hours = Math.round(val * 4) / 4;
   rebuildTable();
 }
-
 function hoursKey(e, idx) {
   if (e.key === 'Enter') { e.preventDefault(); commitHours(idx); }
   if (e.key === 'Escape') { rebuildTable(); }
 }
-
 function statusPill(s) {
   const m = { 'Completed':'status-completed', 'In Progress':'status-inprogress', 'Pending':'status-pending' };
   return `<span class="status-pill ${m[s]||'status-pending'}">${esc(s)}</span>`;
@@ -1376,7 +964,7 @@ function statusPill(s) {
 /* ══════════════════════════════════════════
    OUTLOOK SPLIT BUTTON
 ══════════════════════════════════════════ */
-let outlookMode = 'desktop'; // 'desktop' | 'web' | 'custom'
+let outlookMode = 'desktop';
 let customOutlookUrl = '';
 
 (function initOutlookMode() {
@@ -1388,10 +976,7 @@ let customOutlookUrl = '';
   } catch {}
   setTimeout(() => {
     updateOutlookModeUI();
-    if (customOutlookUrl) {
-      const inp = document.getElementById('om-custom-url-input');
-      if (inp) inp.value = customOutlookUrl;
-    }
+    if (customOutlookUrl) { const inp = document.getElementById('om-custom-url-input'); if (inp) inp.value = customOutlookUrl; }
   }, 100);
 })();
 
@@ -1400,49 +985,28 @@ function toggleOutlookMenu(e) {
   const split = document.getElementById('outlook-split');
   const menu  = document.getElementById('outlook-menu');
   const isOpen = menu.classList.contains('open');
-  // Close all other dropdowns first
   document.querySelectorAll('.cs-panel.is-open').forEach(p => p.classList.remove('is-open'));
   document.querySelectorAll('.cs-trigger.is-open').forEach(t => t.classList.remove('is-open'));
   menu.classList.toggle('open', !isOpen);
   split.classList.toggle('menu-open', !isOpen);
 }
-
 function setOutlookMode(mode) {
   outlookMode = mode;
   try { localStorage.setItem('devlog_outlook_mode', mode); } catch {}
   updateOutlookModeUI();
-  if (mode !== 'custom') {
-    document.getElementById('outlook-menu').classList.remove('open');
-    document.getElementById('outlook-split').classList.remove('menu-open');
-  }
+  if (mode !== 'custom') { document.getElementById('outlook-menu').classList.remove('open'); document.getElementById('outlook-split').classList.remove('menu-open'); }
 }
-
 function updateOutlookModeUI() {
-  const labels = {
-    desktop: 'Open in Outlook',
-    web: 'Open in Office 365',
-    'web-personal': 'Open in Outlook.com',
-    custom: 'Open in Web Mail'
-  };
-  const lastUsed = {
-    desktop: 'Desktop App',
-    web: 'Office 365 Web',
-    'web-personal': 'Outlook.com',
-    custom: 'Custom OWA'
-  };
+  const labels = { desktop:'Open in Outlook', web:'Open in Office 365', 'web-personal':'Open in Outlook.com', custom:'Open in Web Mail' };
+  const lastUsed = { desktop:'Desktop App', web:'Office 365 Web', 'web-personal':'Outlook.com', custom:'Custom OWA' };
   const lbl = document.getElementById('outlook-main-label');
   const last = document.getElementById('om-last-used');
   const customRow = document.getElementById('om-custom-url-row');
   if (lbl) lbl.textContent = labels[outlookMode] || 'Open in Outlook';
   if (last) last.textContent = lastUsed[outlookMode] || 'Desktop App';
-
-  ['desktop','web','web-personal','custom'].forEach(m => {
-    const btn = document.getElementById('om-' + m);
-    if (btn) btn.classList.toggle('active', m === outlookMode);
-  });
+  ['desktop','web','web-personal','custom'].forEach(m => { const btn = document.getElementById('om-' + m); if (btn) btn.classList.toggle('active', m === outlookMode); });
   if (customRow) customRow.style.display = outlookMode === 'custom' ? 'flex' : 'none';
 }
-
 function saveCustomUrl() {
   const inp = document.getElementById('om-custom-url-input');
   if (!inp) return;
@@ -1452,14 +1016,9 @@ function saveCustomUrl() {
   document.getElementById('outlook-split').classList.remove('menu-open');
   updateOutlookModeUI();
 }
-
-// Close outlook menu on outside click
 document.addEventListener('click', function(e) {
   const split = document.getElementById('outlook-split');
-  if (split && !split.contains(e.target)) {
-    document.getElementById('outlook-menu').classList.remove('open');
-    split.classList.remove('menu-open');
-  }
+  if (split && !split.contains(e.target)) { document.getElementById('outlook-menu').classList.remove('open'); split.classList.remove('menu-open'); }
 });
 
 function openOutlookWithMode() {
@@ -1470,50 +1029,33 @@ function openOutlookWithMode() {
   const longDate = new Date().toLocaleDateString('en-GB', { day:'2-digit', month:'long', year:'numeric' });
   const subject = `Daily Update - ${longDate}`;
   const total = calcTotal();
-
-  // ── Build rich HTML email body ──────────────────────────────────────────
   const rows = [...document.getElementById('report-table').querySelectorAll('tr')];
   const htmlTable = buildHtmlEmailTable(rows);
   const fullHtmlBody =
     `<div style="font-family:Calibri,Arial,sans-serif;font-size:14px;color:#222;">` +
-    `<p style="margin:0 0 4px 0;">Date - ${longDate}<br>` +
-    `Employee Name: ${devName}<br>` +
-    `Project / Client Name: ${project}</p>` +
-    `<br>` +
+    `<p style="margin:0 0 4px 0;">Date - ${longDate}<br>Employee Name: ${devName}<br>Project / Client Name: ${project}</p><br>` +
     htmlTable +
-    `<p style="margin:16px 0 0 0;">Best Regards,<br><strong>${devName}</strong></p>` +
-    `</div>`;
-
-  // ── Plain text fallback ─────────────────────────────────────────────────
+    `<p style="margin:16px 0 0 0;">Best Regards,<br><strong>${devName}</strong></p></div>`;
   const COL = [22, 55, 12, 15, 30];
-  function pad(str, len) { str = String(str||''); return str.length > len ? str.slice(0,len-1)+'…' : str.padEnd(len); }
+  const pad = (str, len) => { str = String(str||''); return str.length > len ? str.slice(0,len-1)+'…' : str.padEnd(len); };
   const divider = COL.map(n => '-'.repeat(n)).join('+');
   const hRow = [pad('Project/Client',COL[0]),pad('Task Description',COL[1]),pad('Hours',COL[2]),pad('Status',COL[3]),pad('Remarks',COL[4])].join('|');
   const dRows = currentTasks.map(t => [pad(t.project,COL[0]),pad(t.description,COL[1]),pad(fmtH(t.hours),COL[2]),pad(t.status,COL[3]),pad(t.remarks||'',COL[4])].join('|'));
   const tRow = [pad('Total',COL[0]),pad('',COL[1]),pad(fmtH(total),COL[2]),pad('',COL[3]),pad('',COL[4])].join('|');
-  const plainTable = [divider,hRow,divider,...dRows,divider,tRow,divider].join('\n');
-  const plainBody = `Date - ${longDate}\nEmployee Name: ${devName}\nProject / Client Name: ${project}\n\n${plainTable}\n\nBest Regards,\n${devName}`;
+  const plainBody = `Date - ${longDate}\nEmployee Name: ${devName}\nProject / Client Name: ${project}\n\n${[divider,hRow,divider,...dRows,divider,tRow,divider].join('\n')}\n\nBest Regards,\n${devName}`;
 
   if (mode === 'desktop') {
-    // ── mailto: for installed Outlook / default mail app ─────────────────
     const mailtoLink = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(plainBody)}`;
     if (mailtoLink.length > 8000) {
       copyToClipboard(fullHtmlBody, plainBody).then(() => {
         showOutlookToast('✓ Report copied! Outlook is opening — paste (Ctrl+V) the formatted table into the body.');
         setTimeout(() => { window.location.href = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}`; }, 400);
       });
-    } else {
-      window.location.href = mailtoLink;
-    }
-
+    } else { window.location.href = mailtoLink; }
   } else if (mode === 'web') {
-    // ── Office 365 OWA (outlook.office.com) — the correct deep link ──────
     openOwaCompose('https://outlook.office.com', to, subject, fullHtmlBody, plainBody);
-
   } else if (mode === 'web-personal') {
-    // ── Outlook.com / Hotmail / Live ──────────────────────────────────────
     openOwaCompose('https://outlook.live.com', to, subject, fullHtmlBody, plainBody);
-
   } else if (mode === 'custom') {
     if (!customOutlookUrl) {
       document.getElementById('outlook-menu').classList.add('open');
@@ -1525,95 +1067,94 @@ function openOutlookWithMode() {
   }
 }
 
-/* ── Core OWA compose opener ─────────────────────────────────────────────
-   Strategy:
-   1. Copy HTML to clipboard (for paste fallback)
-   2. Build the OWA deeplink/compose URL with to + subject
-   3. Embed body via a hidden form POST into a new window (works for OWA)
-      If that fails gracefully, fall back to URL params
-────────────────────────────────────────────────────────────────────────── */
 function openOwaCompose(baseOrigin, to, subject, htmlBody, plainBody) {
-  // Always copy rich HTML to clipboard as safety net
   copyToClipboard(htmlBody, plainBody);
-
-  // Detect OWA vs outlook.live.com — they use slightly different paths
-  const isLive = baseOrigin.includes('outlook.live.com') || baseOrigin.includes('hotmail') || baseOrigin.includes('outlook.com/mail');
-  const isOffice = baseOrigin.includes('outlook.office') || baseOrigin.includes('office365') || baseOrigin.includes('microsoft.com');
-
-  // Build the compose deeplink URL
-  // Office 365 / OWA: /mail/deeplink/compose?to=&subject=&body=
-  // Outlook.com:       /mail/0/deeplink/compose?to=&subject=&body=
-  let composePath;
-  if (isLive) {
-    composePath = '/mail/0/deeplink/compose';
-  } else {
-    composePath = '/mail/deeplink/compose';
-  }
-
-  // We pass a short plaintext body in the URL (enough for context)
-  // Full HTML goes via clipboard — user just pastes once
-  const shortPlain = plainBody.slice(0, 1800);
+  const isLive = baseOrigin.includes('outlook.live.com') || baseOrigin.includes('hotmail');
+  const composePath = isLive ? '/mail/0/deeplink/compose' : '/mail/deeplink/compose';
   const params = new URLSearchParams();
   if (to) params.set('to', to);
   params.set('subject', subject);
-  params.set('body', shortPlain);
-
+  params.set('body', plainBody.slice(0, 1800));
   const composeUrl = `${baseOrigin}${composePath}?${params.toString()}`;
-
-  // Open compose window
   const win = window.open(composeUrl, '_blank', 'noopener,noreferrer');
-
-  // Show smart toast based on what happened
   if (win) {
-    showOutlookToast(
-      '✓ Outlook compose opened with To & Subject pre-filled.\n' +
-      'Rich table copied to clipboard — click in the email body and press Ctrl+V to paste the formatted table.',
-      7000
-    );
+    showOutlookToast('✓ Outlook compose opened with To & Subject pre-filled.\nRich table copied to clipboard — click in the email body and press Ctrl+V to paste the formatted table.', 7000);
   } else {
-    // Popup blocked — redirect in same tab
     showOutlookToast('✓ Rich table copied to clipboard. Opening Outlook...', 4000);
     setTimeout(() => { window.location.href = composeUrl; }, 300);
   }
 }
 
+/* ══════════════════════════════════════════
+   EMAIL TABLE — Clean white professional styling
+   No dark colors — safe for all email clients
+══════════════════════════════════════════ */
 function buildHtmlEmailTable(rows) {
   const tblStyle = 'border-collapse:collapse;font-family:Calibri,Arial,sans-serif;font-size:13px;width:100%;';
-  const thStyle  = 'border:1px solid #aaa;padding:8px 12px;background:#1f3864;color:#ffffff;font-weight:600;text-align:left;white-space:nowrap;';
-  const tdStyle  = 'border:1px solid #ccc;padding:8px 12px;color:#222;vertical-align:top;';
-  const tdHStyle = 'border:1px solid #ccc;padding:8px 12px;color:#222;text-align:right;font-weight:600;white-space:nowrap;';
-  const trTotalStyle = 'background:#e8f0fe;';
-  const tdTotalStyle = 'border:1px solid #aaa;padding:8px 12px;color:#1f3864;font-weight:700;';
-  const tdTotalHStyle= 'border:1px solid #aaa;padding:8px 12px;color:#1f3864;font-weight:700;text-align:right;';
-  const evenBg = 'background:#f8f9ff;';
+
+  const thStyle = 'border:1px solid #999;padding:8px 12px;background:#1f3864;color:#ffffff;font-weight:bold;text-align:left;font-size:13px;vertical-align:bottom;line-height:1.4;';
+
+  const tdStyle = 'border:1px solid #ccc;padding:8px 12px;color:#000000;background:#ffffff;vertical-align:top;font-size:13px;line-height:1.5;';
+
+  const tdHoursStyle = 'border:1px solid #ccc;padding:8px 12px;color:#000000;background:#ffffff;text-align:center;font-weight:bold;font-size:13px;vertical-align:middle;white-space:nowrap;';
+
+  const tdTotalLabelStyle = 'border:1px solid #999;padding:8px 12px;color:#000000;background:#f2f2f2;font-weight:bold;font-size:13px;';
+  const tdTotalHoursStyle = 'border:1px solid #999;padding:8px 12px;color:#000000;background:#f2f2f2;font-weight:bold;text-align:center;font-size:13px;white-space:nowrap;';
+  const tdTotalEmptyStyle = 'border:1px solid #999;padding:8px 12px;background:#f2f2f2;';
 
   return `<table style="${tblStyle}">` +
-    rows.map((r, i) => {
+    rows.map((r) => {
       const isTotal = r.classList.contains('total-row');
-      const cells = [...r.querySelectorAll('th,td')];
-      const rowBg = (!isTotal && i % 2 === 0 && i > 0) ? evenBg : '';
-      const rowStyle = isTotal ? trTotalStyle : rowBg;
-      return `<tr style="${rowStyle}">` + cells.map((c, ci) => {
+      const cells   = [...r.querySelectorAll('th,td')];
+      return '<tr>' + cells.map((c, ci) => {
         const isHeader = c.tagName === 'TH';
-        const isHours = ci === 2;
-        let s;
-        if (isHeader) s = thStyle;
-        else if (isTotal) s = isHours ? tdTotalHStyle : tdTotalStyle;
-        else s = isHours ? tdHStyle : tdStyle;
-        const text = c.innerText.replace(/\n/g,' ').trim();
-        return `<${isHeader?'th':'td'} style="${s}">${text}</${isHeader?'th':'td'}>`;
+        const isHours  = ci === 2;
+        let style;
+        if (isHeader) {
+          style = thStyle;
+        } else if (isTotal) {
+          style = ci === 0 ? tdTotalLabelStyle : isHours ? tdTotalHoursStyle : tdTotalEmptyStyle;
+        } else {
+          style = isHours ? tdHoursStyle : tdStyle;
+        }
+        const text = c.innerText.replace(/\n/g, ' ').trim();
+        return `<${isHeader?'th':'td'} style="${style}">${text}</${isHeader?'th':'td'}>`;
       }).join('') + '</tr>';
     }).join('') + '</table>';
 }
 
-function copyAndOpenMailto(to, subject, htmlBody, plainBody) {
-  copyToClipboard(htmlBody, plainBody).then(() => {
-    showOutlookToast('✓ Report copied! Outlook is opening — paste (Ctrl+V) into the email body.', 6000);
-    setTimeout(() => {
-      window.location.href = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}`;
-    }, 600);
-  });
+/* ══════════════════════════════════════════
+   COPY / PRINT
+══════════════════════════════════════════ */
+function copyTable() {
+  const rows = [...document.getElementById('report-table').querySelectorAll('tr')];
+  const tsv = rows.map(r => [...r.querySelectorAll('th,td')].map(c => c.innerText.replace(/\n/g,' ').trim()).join('\t')).join('\n');
+  /* FIX: use buildHtmlEmailTable (clean white) instead of dark buildHtmlTable */
+  const html = buildHtmlEmailTable(rows);
+  if (navigator.clipboard && window.ClipboardItem) {
+    navigator.clipboard.write([new ClipboardItem({ 'text/html': new Blob([html],{type:'text/html'}), 'text/plain': new Blob([tsv],{type:'text/plain'}) })]).then(()=>alert('Table copied. Paste into Outlook/Word.'));
+  } else { navigator.clipboard.writeText(tsv).then(()=>alert('Copied as text.')); }
 }
+
+function copyFullReport() {
+  const project = document.getElementById('project-name').value.trim() || 'Project';
+  const devName = document.getElementById('dev-name').value.trim() || 'Employee';
+  const longDate = new Date().toLocaleDateString('en-GB', { day:'2-digit', month:'long', year:'numeric' });
+  const rows = [...document.getElementById('report-table').querySelectorAll('tr')];
+  const tsv = rows.map(r => [...r.querySelectorAll('th,td')].map(c => c.innerText.replace(/\n/g,' ').trim()).join('\t')).join('\n');
+  const html = buildHtmlEmailTable(rows);
+  const htmlBody =
+    `<p style="font-family:Calibri,Arial,sans-serif;font-size:14px;color:#000;margin:0 0 12px;">` +
+    `Date - ${longDate}<br>Employee Name: ${devName}<br>Project / Client Name: ${project}</p>` +
+    html +
+    `<p style="font-family:Calibri,Arial,sans-serif;font-size:14px;color:#000;margin:16px 0 0;">Best Regards,<br><strong>${devName}</strong></p>`;
+  const plain = `Date - ${longDate}\nEmployee Name: ${devName}\nProject / Client Name: ${project}\n\n${tsv}\n\nBest Regards,\n${devName}`;
+  if (navigator.clipboard && window.ClipboardItem) {
+    navigator.clipboard.write([new ClipboardItem({ 'text/html': new Blob([htmlBody],{type:'text/html'}), 'text/plain': new Blob([plain],{type:'text/plain'}) })]).then(()=>alert('Full report copied. Paste into Outlook/Word.'));
+  } else { navigator.clipboard.writeText(plain).then(()=>alert('Copied as plain text.')); }
+}
+
+function printReport() { window.print(); }
 
 function copyToClipboard(htmlBody, plainBody) {
   if (navigator.clipboard && window.ClipboardItem) {
@@ -1630,18 +1171,8 @@ function showOutlookToast(msg, duration = 5000) {
   if (!toast) {
     toast = document.createElement('div');
     toast.id = 'outlook-toast';
-    toast.style.cssText = [
-      'position:fixed','bottom:28px','left:50%','transform:translateX(-50%)',
-      'background:#1a1d27','border:1px solid rgba(123,111,240,0.6)',
-      'color:#c8cce0','font-family:\'IBM Plex Mono\',monospace','font-size:12px',
-      'padding:14px 22px','border-radius:8px','z-index:99999',
-      'box-shadow:0 8px 40px rgba(0,0,0,0.6)',
-      'max-width:520px','text-align:center','line-height:1.7','white-space:pre-line',
-    ].join(';');
-    document.head.insertAdjacentHTML('beforeend',
-      `<style>@keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}` +
-      `#outlook-toast{animation:toastIn 0.2s ease;}</style>`
-    );
+    toast.style.cssText = 'position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:#1a1d27;border:1px solid rgba(123,111,240,0.6);color:#c8cce0;font-family:\'IBM Plex Mono\',monospace;font-size:12px;padding:14px 22px;border-radius:8px;z-index:99999;box-shadow:0 8px 40px rgba(0,0,0,0.6);max-width:520px;text-align:center;line-height:1.7;white-space:pre-line;';
+    document.head.insertAdjacentHTML('beforeend', `<style>@keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}#outlook-toast{animation:toastIn 0.2s ease;}</style>`);
     document.body.appendChild(toast);
   }
   toast.textContent = msg;
@@ -1650,61 +1181,7 @@ function showOutlookToast(msg, duration = 5000) {
   toast._t = setTimeout(() => { toast.style.display = 'none'; }, duration);
 }
 
-function buildHtmlEmailTable(rows) {
-  const style = 'border-collapse:collapse;font-family:Arial,sans-serif;font-size:13px;';
-  const thStyle = 'border:1px solid #555;padding:8px 12px;background:#1a1a2e;color:#c0c4d8;font-weight:600;text-align:left;';
-  const tdStyle = 'border:1px solid #3a3a5c;padding:8px 12px;color:#d0d4e8;';
-  const totalStyle = 'border:1px solid #3a3a5c;padding:8px 12px;color:#e8eaf2;font-weight:700;background:#111320;';
-  return `<table style="${style}">` +
-    rows.map((r, i) => {
-      const isTotal = r.classList.contains('total-row');
-      return '<tr>' + [...r.querySelectorAll('th,td')].map(c => {
-        const isHeader = c.tagName === 'TH';
-        const s = isHeader ? thStyle : (isTotal ? totalStyle : tdStyle);
-        return `<${isHeader?'th':'td'} style="${s}">${c.innerText.replace(/\n/g,' ').trim()}</${isHeader?'th':'td'}>`;
-      }).join('') + '</tr>';
-    }).join('') + '</table>';
-}
-
-/* ══════════════════════════════════════════
-   COPY / PRINT
-══════════════════════════════════════════ */
-function buildHtmlTable(rows) {
-  return '<table border="1" cellpadding="4" cellspacing="0" style="border-collapse:collapse;">' +
-    rows.map((r,i) => '<tr>' + [...r.querySelectorAll('th,td')].map(c => {
-      const t = i===0?'th':'td';
-      return `<${t} style="border:1px solid #888;padding:4px 8px;">${c.innerText.replace(/\n/g,' ').trim()}</${t}>`;
-    }).join('') + '</tr>').join('') + '</table>';
-}
-
-function copyTable() {
-  const rows = [...document.getElementById('report-table').querySelectorAll('tr')];
-  const tsv = rows.map(r => [...r.querySelectorAll('th,td')].map(c => c.innerText.replace(/\n/g,' ').trim()).join('\t')).join('\n');
-  const html = buildHtmlTable(rows);
-  if (navigator.clipboard && window.ClipboardItem) {
-    navigator.clipboard.write([new ClipboardItem({ 'text/html': new Blob([html],{type:'text/html'}), 'text/plain': new Blob([tsv],{type:'text/plain'}) })]).then(()=>alert('Table copied. Paste into Outlook/Word.'));
-  } else { navigator.clipboard.writeText(tsv).then(()=>alert('Copied as text.')); }
-}
-
-function copyFullReport() {
-  const project = document.getElementById('project-name').value.trim() || 'Project';
-  const devName = document.getElementById('dev-name').value.trim() || 'Employee';
-  const longDate = new Date().toLocaleDateString('en-GB', { day:'2-digit', month:'long', year:'numeric' });
-  const rows = [...document.getElementById('report-table').querySelectorAll('tr')];
-  const tsv = rows.map(r => [...r.querySelectorAll('th,td')].map(c => c.innerText.replace(/\n/g,' ').trim()).join('\t')).join('\n');
-  const html = buildHtmlEmailTable(rows);
-  const htmlBody = `<p>Date - ${longDate}<br>Employee Name: ${devName}<br>Project / Client Name: ${project}</p>${html}<p>Best Regards,<br>${devName}</p>`;
-  const plain = `Date - ${longDate}\nEmployee Name: ${devName}\nProject / Client Name: ${project}\n\n${tsv}\n\nBest Regards,\n${devName}`;
-  if (navigator.clipboard && window.ClipboardItem) {
-    navigator.clipboard.write([new ClipboardItem({ 'text/html': new Blob([htmlBody],{type:'text/html'}), 'text/plain': new Blob([plain],{type:'text/plain'}) })]).then(()=>alert('Full report copied. Paste into Outlook/Word.'));
-  } else { navigator.clipboard.writeText(plain).then(()=>alert('Copied as plain text.')); }
-}
-
-function printReport() { window.print(); }
-
-/* ══════════════════════════════════════════
-   HELPERS
-══════════════════════════════════════════ */
+/* ── Helpers ── */
 function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function fmtTime(iso) { try { return new Date(iso).toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'}); } catch{return '';} }
 function setGenerating(on) {
