@@ -29,692 +29,429 @@
   }
 
   html { font-size: 14px; }
+  body { background: var(--bg); color: var(--text); font-family: var(--mono); min-height: 100vh; overflow-x: hidden; }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--mono);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  /* Grid background */
   body::before {
     content: '';
-    position: fixed;
-    inset: 0;
+    position: fixed; inset: 0;
     background-image:
       linear-gradient(rgba(79,255,176,0.025) 1px, transparent 1px),
       linear-gradient(90deg, rgba(79,255,176,0.025) 1px, transparent 1px);
     background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
+    pointer-events: none; z-index: 0;
   }
 
-  .app {
-    position: relative;
-    z-index: 1;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 32px 24px 60px;
-  }
+  .app { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 32px 24px 60px; }
 
-  /* ── Header ── */
-  .header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 40px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .logo-area {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .logo-tag {
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--accent);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    opacity: 0.8;
-  }
-
-  .logo-title {
-    font-family: var(--display);
-    font-size: 32px;
-    font-weight: 800;
-    letter-spacing: -1px;
-    color: var(--text);
-    line-height: 1;
-  }
-
+  .header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+  .logo-area { display: flex; flex-direction: column; gap: 4px; }
+  .logo-tag { font-family: var(--mono); font-size: 10px; color: var(--accent); letter-spacing: 3px; text-transform: uppercase; opacity: 0.8; }
+  .logo-title { font-family: var(--display); font-size: 32px; font-weight: 800; letter-spacing: -1px; color: var(--text); line-height: 1; }
   .logo-title span { color: var(--accent); }
+  .header-meta { font-size: 11px; color: var(--text-dim); text-align: right; line-height: 1.6; }
 
-  .header-meta {
-    font-size: 11px;
-    color: var(--text-dim);
-    text-align: right;
-    line-height: 1.6;
+  .config-panel, .prompt-panel {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 28px; margin-bottom: 28px; position: relative; overflow: visible;
   }
-
-  /* ── Config Panel ── */
-  .config-panel {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 28px;
-    margin-bottom: 28px;
-    position: relative;
-    overflow: hidden;
+  .config-panel::before, .prompt-panel::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; border-radius: 8px 8px 0 0;
   }
-
-  .config-panel::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-  }
+  .config-panel::before { background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+  .prompt-panel::before { background: linear-gradient(90deg, var(--accent2), var(--accent)); }
 
   .panel-title {
-    font-family: var(--display);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-family: var(--display); font-size: 13px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 8px;
   }
-
   .panel-title::before {
-    content: '';
-    width: 6px; height: 6px;
-    background: var(--accent);
-    border-radius: 50%;
-    box-shadow: 0 0 8px var(--accent);
+    content: ''; width: 6px; height: 6px; background: var(--accent);
+    border-radius: 50%; box-shadow: 0 0 8px var(--accent);
   }
 
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
-  .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; }
-  .col-span-2 { grid-column: span 2; }
-  .col-span-3 { grid-column: span 3; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); }
 
-  .field {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+  input, textarea {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
+    color: var(--text); font-family: var(--mono); font-size: 13px; padding: 10px 14px;
+    transition: border-color 0.2s, box-shadow 0.2s; outline: none; width: 100%;
   }
-
-  label {
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-
-  input, select, textarea {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    color: var(--text);
-    font-family: var(--mono);
-    font-size: 13px;
-    padding: 10px 14px;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    outline: none;
-    width: 100%;
-  }
-
-  input:focus, select:focus, textarea:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 2px rgba(79,255,176,0.1);
-  }
-
+  input:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(79,255,176,0.1); }
   input::placeholder, textarea::placeholder { color: var(--text-dim); }
-
-  select option { background: var(--surface2); }
-
-  textarea {
-    resize: vertical;
-    min-height: 80px;
-    line-height: 1.5;
-  }
-
+  textarea { resize: vertical; min-height: 80px; line-height: 1.5; }
   .row-gap { margin-top: 16px; }
 
-  /* ── Tabs ── */
-  .tabs {
-    display: flex;
-    gap: 2px;
-    margin-bottom: 20px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 4px;
-    width: fit-content;
-  }
-
-  .tab {
-    padding: 8px 18px;
-    border-radius: 6px;
-    font-size: 11px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    cursor: pointer;
-    border: none;
-    background: transparent;
-    color: var(--text-muted);
-    font-family: var(--mono);
-    transition: all 0.2s;
-  }
-
-  .tab.active {
-    background: var(--surface2);
-    color: var(--accent);
-    box-shadow: 0 0 12px rgba(79,255,176,0.1);
-  }
-
+  .tabs { display: flex; gap: 2px; margin-bottom: 20px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 4px; width: fit-content; }
+  .tab { padding: 8px 18px; border-radius: 6px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; border: none; background: transparent; color: var(--text-muted); font-family: var(--mono); transition: all 0.2s; }
+  .tab.active { background: var(--surface2); color: var(--accent); box-shadow: 0 0 12px rgba(79,255,176,0.1); }
   .tab-content { display: none; }
   .tab-content.active { display: block; }
 
-  /* ── Prompt Area ── */
-  .prompt-panel {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 28px;
-    margin-bottom: 28px;
-    position: relative;
-    overflow: hidden;
+  /* ══════════════════════════════════════
+     PREMIUM CUSTOM DROPDOWN SYSTEM
+  ══════════════════════════════════════ */
+
+  .cs-wrap { position: relative; width: 100%; user-select: none; }
+
+  .cs-trigger {
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
+    padding: 7px 12px; cursor: pointer; min-height: 42px;
+    transition: border-color 0.2s, box-shadow 0.2s; position: relative; z-index: 2;
   }
-
-  .prompt-panel::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent2), var(--accent));
+  .cs-trigger:hover { border-color: var(--border-bright); }
+  .cs-trigger.is-open {
+    border-color: var(--accent); box-shadow: 0 0 0 2px rgba(79,255,176,0.1);
+    border-bottom-left-radius: 0; border-bottom-right-radius: 0;
   }
+  .cs-trigger.branch-trigger.is-open { border-color: var(--accent2); box-shadow: 0 0 0 2px rgba(123,111,240,0.12); }
 
-  /* ── Generate Button ── */
-  .btn-generate {
-    width: 100%;
-    padding: 16px;
-    background: linear-gradient(135deg, var(--accent), #00d4a1);
-    color: #0d0f14;
-    font-family: var(--display);
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
+  .cs-tags { display: flex; flex-wrap: wrap; gap: 5px; flex: 1; min-width: 0; }
+  .cs-ph { font-size: 13px; color: var(--text-dim); font-family: var(--mono); }
+
+  .cs-tag {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: rgba(79,255,176,0.08); border: 1px solid rgba(79,255,176,0.25);
+    border-radius: 4px; padding: 2px 8px 2px 10px; font-size: 11px; color: var(--accent);
+    font-family: var(--mono); white-space: nowrap; max-width: 200px;
   }
+  .cs-tag span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .cs-tag .rm { cursor: pointer; opacity: 0.55; font-size: 14px; line-height: 1; padding: 0 1px; transition: opacity 0.15s, color 0.15s; flex-shrink: 0; }
+  .cs-tag .rm:hover { opacity: 1; color: var(--accent3); }
 
-  .btn-generate:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 8px 24px rgba(79,255,176,0.3);
+  .cs-tag.bt { background: rgba(123,111,240,0.1); border-color: rgba(123,111,240,0.3); color: var(--accent2); }
+
+  .cs-caret { width: 16px; height: 16px; color: var(--text-dim); transition: transform 0.2s, color 0.2s; flex-shrink: 0; }
+  .cs-trigger.is-open .cs-caret { transform: rotate(180deg); color: var(--accent); }
+  .cs-trigger.branch-trigger.is-open .cs-caret { color: var(--accent2); }
+
+  .cs-panel {
+    display: none; position: absolute; top: calc(100% - 1px); left: 0; right: 0;
+    background: #0f1119; border: 1px solid var(--accent); border-top: none;
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 4px 16px rgba(79,255,176,0.04);
+    z-index: 9999; overflow: hidden;
+    animation: panelIn 0.14s ease;
   }
+  .cs-panel.bp { border-color: var(--accent2); box-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 4px 16px rgba(123,111,240,0.06); }
+  .cs-panel.is-open { display: block; }
 
-  .btn-generate:active { transform: translateY(0); }
+  @keyframes panelIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
 
-  .btn-generate:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
+  .cs-searchbox {
+    display: flex; align-items: center; gap: 8px;
+    padding: 9px 12px; border-bottom: 1px solid var(--border);
   }
-
-  /* ── Loading ── */
-  .loading-state {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    padding: 60px;
+  .cs-searchbox svg { color: var(--text-dim); flex-shrink: 0; }
+  .cs-searchbox input {
+    flex: 1; background: transparent; border: none; padding: 0; font-size: 12px;
+    color: var(--text); outline: none; font-family: var(--mono);
   }
+  .cs-searchbox input::placeholder { color: var(--text-dim); }
 
-  .loading-state.visible { display: flex; }
-
-  .spinner {
-    width: 40px; height: 40px;
-    border: 2px solid var(--border);
-    border-top-color: var(--accent);
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
+  .cs-all-row {
+    display: flex; align-items: center; gap: 10px; padding: 8px 14px;
+    border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.1s;
   }
+  .cs-all-row:hover { background: rgba(255,255,255,0.03); }
+  .cs-all-label { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--text-dim); }
 
-  @keyframes spin { to { transform: rotate(360deg); } }
+  .cs-list { max-height: 220px; overflow-y: auto; padding: 4px 0; scrollbar-width: thin; scrollbar-color: var(--border-bright) transparent; }
+  .cs-list::-webkit-scrollbar { width: 3px; }
+  .cs-list::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 4px; }
 
-  .loading-text {
-    font-size: 12px;
-    color: var(--text-muted);
-    letter-spacing: 1px;
+  .cs-opt {
+    display: flex; align-items: center; gap: 10px; padding: 9px 14px;
+    cursor: pointer; transition: background 0.1s, border-left-color 0.1s;
+    border-left: 2px solid transparent;
   }
+  .cs-opt:hover { background: rgba(79,255,176,0.04); border-left-color: var(--accent); }
+  .cs-opt.sel { background: rgba(79,255,176,0.07); border-left-color: var(--accent); }
+  .cs-opt.bo:hover { background: rgba(123,111,240,0.05); border-left-color: var(--accent2); }
+  .cs-opt.bo.sel { background: rgba(123,111,240,0.09); border-left-color: var(--accent2); }
 
-  .loading-dots::after {
-    content: '';
-    animation: dots 1.2s steps(4, end) infinite;
-  }
-
-  @keyframes dots {
-    0%   { content: ''; }
-    25%  { content: '.'; }
-    50%  { content: '..'; }
-    75%  { content: '...'; }
-  }
-
-  /* ── Error ── */
-  .error-box {
-    display: none;
-    background: rgba(255,107,107,0.08);
-    border: 1px solid rgba(255,107,107,0.3);
-    border-radius: 8px;
-    padding: 16px 20px;
-    color: var(--accent3);
-    font-size: 12px;
-    line-height: 1.6;
-    margin-top: 16px;
-  }
-
-  .error-box.visible { display: block; }
-
-  /* ── Report Output ── */
-  .report-wrapper {
-    display: none;
-    animation: fadeUp 0.4s ease;
-  }
-
-  .report-wrapper.visible { display: block; }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(12px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .report-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .report-badge {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 11px;
-    color: var(--accent);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-
-  .report-badge::before {
-    content: '✓';
-    width: 20px; height: 20px;
-    background: rgba(79,255,176,0.15);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-  }
-
-  .btn-actions {
-    display: flex;
-    gap: 8px;
-  }
-
-  .btn-sm {
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    cursor: pointer;
-    border: 1px solid var(--border);
-    background: var(--surface2);
-    color: var(--text-muted);
+  .cs-chk {
+    width: 14px; height: 14px; border: 1px solid var(--border-bright); border-radius: 3px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     transition: all 0.15s;
   }
+  .cs-opt.sel .cs-chk { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 6px rgba(79,255,176,0.4); }
+  .cs-opt.bo.sel .cs-chk { background: var(--accent2); border-color: var(--accent2); box-shadow: 0 0 6px rgba(123,111,240,0.4); }
+  .cs-chk svg { display: none; }
+  .cs-opt.sel .cs-chk svg { display: block; }
 
-  .btn-sm:hover {
-    border-color: var(--accent);
-    color: var(--accent);
+  .cs-opt-text { font-size: 12px; color: var(--text-muted); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .cs-opt:hover .cs-opt-text, .cs-opt.sel .cs-opt-text { color: var(--text); }
+
+  .cs-badge {
+    font-size: 9px; padding: 2px 7px; border-radius: 20px;
+    background: var(--surface2); color: var(--text-dim); border: 1px solid var(--border);
+    white-space: nowrap; letter-spacing: 0.4px;
   }
 
-  /* ── THE TABLE (matching screenshot) ── */
-  .report-container {
-    background: #1a1c24;
-    border: 1px solid #2e3248;
-    border-radius: 6px;
-    overflow: hidden;
-    font-family: var(--mono);
+  .cs-spin-row { display: flex; align-items: center; gap: 10px; padding: 18px 14px; color: var(--text-muted); font-size: 12px; }
+  .cs-mini-spin { width: 13px; height: 13px; border: 1.5px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: sp 0.7s linear infinite; }
+  @keyframes sp { to { transform: rotate(360deg); } }
+
+  .cs-empty-msg { padding: 16px 14px; color: var(--text-dim); font-size: 12px; text-align: center; }
+
+  /* All-checkbox */
+  .cs-all-chk { width: 14px; height: 14px; border: 1px solid var(--border-bright); border-radius: 3px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .cs-all-chk svg { display: none; }
+  .cs-all-chk.checked { background: rgba(79,255,176,0.15); border-color: rgba(79,255,176,0.4); }
+  .cs-all-chk.checked svg { display: block; }
+
+  /* ── Branch Grid ── */
+  .branch-grid { margin-top: 20px; display: none; }
+  .branch-grid-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .branch-grid-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .branch-rows { display: flex; flex-direction: column; gap: 10px; }
+
+  .branch-row {
+    display: grid; grid-template-columns: 1fr 24px 1fr; align-items: center; gap: 10px;
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 6px;
+    padding: 10px 14px; animation: rowIn 0.2s ease;
   }
+  @keyframes rowIn { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:none; } }
 
-  .report-project-title {
-    padding: 20px 24px 14px;
-    font-family: var(--display);
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--text);
-    border-bottom: 1px solid #2e3248;
-    letter-spacing: -0.3px;
+  .br-repo-name { font-size: 12px; color: var(--accent); font-family: var(--mono); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .br-repo-name em { color: var(--text-dim); font-style: normal; font-size: 11px; }
+  .br-arrow { color: var(--text-dim); font-size: 12px; text-align: center; }
+
+  /* ── Fetch row ── */
+  .fetch-row { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: end; margin-top: 16px; }
+
+  .btn-action {
+    padding: 10px 18px; background: transparent; border: 1px solid var(--border-bright);
+    border-radius: 6px; color: var(--text-muted); font-family: var(--mono); font-size: 11px;
+    letter-spacing: 1px; text-transform: uppercase; cursor: pointer; white-space: nowrap;
+    transition: all 0.2s; display: flex; align-items: center; gap: 6px;
   }
+  .btn-action:hover { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 12px rgba(79,255,176,0.1); }
 
-  .report-summary-msg {
-    padding: 16px 24px;
-    font-size: 12px;
-    color: var(--text-muted);
-    line-height: 1.7;
-    border-bottom: 1px solid #2e3248;
-    white-space: pre-wrap;
-  }
-
-  .report-table-wrap {
-    overflow-x: auto;
-  }
-
-  .report-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 12px;
-  }
-
-  .report-table th {
-    background: #111320;
-    color: #8890b0;
-    font-weight: 500;
-    font-size: 11px;
-    text-align: left;
-    padding: 12px 16px;
-    border-bottom: 1px solid #2e3248;
-    border-right: 1px solid #2e3248;
-    white-space: nowrap;
-    vertical-align: bottom;
-    line-height: 1.4;
-  }
-
-  .report-table th:last-child { border-right: none; }
-
-  .report-table td {
-    padding: 11px 16px;
-    border-bottom: 1px solid #22253a;
-    border-right: 1px solid #22253a;
-    color: #c8cce0;
-    vertical-align: middle;
-    line-height: 1.5;
-  }
-
-  .report-table td:last-child { border-right: none; }
-
-  .report-table tr:last-child td { border-bottom: none; }
-
-  .report-table tr:hover td { background: rgba(79,255,176,0.03); }
-
-  .report-table .col-hours {
-    text-align: right;
-    color: var(--text);
-    font-weight: 500;
-    white-space: nowrap;
-  }
-
-  .report-table .total-row td {
-    background: #111320;
-    color: var(--text);
-    font-weight: 600;
-    border-top: 1px solid #2e3248;
-  }
-
-  /* Status pill */
-  .status-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 10px;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    font-weight: 600;
-    white-space: nowrap;
-  }
-
-  .status-pill::before {
-    content: '';
-    width: 5px; height: 5px;
-    border-radius: 50%;
-  }
-
-  .status-completed {
-    background: rgba(79,255,176,0.1);
-    color: var(--completed);
-    border: 1px solid rgba(79,255,176,0.2);
-  }
-
-  .status-completed::before { background: var(--completed); box-shadow: 0 0 4px var(--completed); }
-
-  .status-inprogress {
-    background: rgba(251,191,36,0.1);
-    color: var(--inprogress);
-    border: 1px solid rgba(251,191,36,0.2);
-  }
-
-  .status-inprogress::before { background: var(--inprogress); }
-
-  .status-pending {
-    background: rgba(123,111,240,0.12);
-    color: var(--pending);
-    border: 1px solid rgba(123,111,240,0.25);
-  }
-
-  .status-pending::before { background: var(--pending); }
-
-  /* ── Report Footer ── */
-  .report-footer {
-    padding: 14px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-top: 1px solid #2e3248;
-    background: #111320;
-    font-size: 11px;
-    color: #454966;
-  }
-
-  /* ── Commit Preview ── */
-  .commits-preview {
-    display: none;
-    margin-top: 20px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-
-  .commits-preview.visible { display: block; }
-
-  .commits-preview-header {
-    padding: 14px 20px;
-    border-bottom: 1px solid var(--border);
-    font-size: 11px;
-    color: var(--text-muted);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .commits-list {
-    max-height: 220px;
-    overflow-y: auto;
-    padding: 8px 0;
-  }
-
-  .commits-list::-webkit-scrollbar { width: 4px; }
-  .commits-list::-webkit-scrollbar-track { background: transparent; }
-  .commits-list::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 4px; }
-
-  .commit-item {
-    padding: 10px 20px;
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-    border-bottom: 1px solid rgba(37,40,54,0.5);
-    transition: background 0.1s;
-  }
-
+  /* ── Commits ── */
+  .commits-preview { display: none; margin-top: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .commits-preview.vis { display: block; }
+  .commits-hdr { padding: 12px 20px; border-bottom: 1px solid var(--border); font-size: 11px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center; }
+  .commits-group-hdr { padding: 7px 20px; background: rgba(79,255,176,0.03); border-bottom: 1px solid var(--border); font-size: 10px; color: var(--accent); letter-spacing: 1px; display: flex; align-items: center; gap: 8px; }
+  .bchip { background: rgba(123,111,240,0.15); border: 1px solid rgba(123,111,240,0.3); color: var(--accent2); padding: 1px 8px; border-radius: 3px; font-size: 10px; }
+  .commits-list { max-height: 260px; overflow-y: auto; padding: 4px 0; scrollbar-width: thin; scrollbar-color: var(--border-bright) transparent; }
+  .commit-item { padding: 9px 20px; display: flex; gap: 12px; align-items: flex-start; border-bottom: 1px solid rgba(37,40,54,0.5); transition: background 0.1s; }
   .commit-item:hover { background: var(--surface2); }
   .commit-item:last-child { border-bottom: none; }
+  .c-sha { font-size: 10px; color: var(--accent2); white-space: nowrap; padding-top: 1px; }
+  .c-msg { font-size: 12px; color: var(--text); flex: 1; line-height: 1.4; }
+  .c-time { font-size: 10px; color: var(--text-dim); white-space: nowrap; }
 
-  .commit-sha {
-    font-size: 10px;
-    color: var(--accent2);
-    white-space: nowrap;
-    padding-top: 1px;
-  }
+  .error-box { display: none; background: rgba(255,107,107,0.08); border: 1px solid rgba(255,107,107,0.3); border-radius: 8px; padding: 14px 18px; color: var(--accent3); font-size: 12px; line-height: 1.6; margin-top: 16px; }
+  .error-box.vis { display: block; }
 
-  .commit-msg {
-    font-size: 12px;
-    color: var(--text);
-    flex: 1;
-    line-height: 1.4;
-  }
+  .btn-generate { width: 100%; padding: 16px; background: linear-gradient(135deg, var(--accent), #00d4a1); color: #0d0f14; font-family: var(--display); font-size: 14px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 20px; }
+  .btn-generate:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(79,255,176,0.3); }
+  .btn-generate:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
 
-  .commit-time {
-    font-size: 10px;
-    color: var(--text-dim);
-    white-space: nowrap;
-  }
+  .loading-state { display: none; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding: 60px; }
+  .loading-state.vis { display: flex; }
+  .spinner { width: 40px; height: 40px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: sp 0.8s linear infinite; }
+  .loading-text { font-size: 12px; color: var(--text-muted); letter-spacing: 1px; }
+  .loading-dots::after { content: ''; animation: dots 1.2s steps(4,end) infinite; }
+  @keyframes dots { 0%{content:''} 25%{content:'.'} 50%{content:'..'} 75%{content:'...'} }
 
-  /* ── Responsive ── */
+  .report-wrapper { display: none; animation: fadeUp 0.4s ease; }
+  .report-wrapper.vis { display: block; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:none} }
+
+  .report-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
+  .report-badge { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; }
+  .report-badge::before { content: '✓'; width: 20px; height: 20px; background: rgba(79,255,176,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; }
+  .btn-actions { display: flex; gap: 8px; }
+  .btn-sm { padding: 8px 16px; border-radius: 6px; font-family: var(--mono); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; border: 1px solid var(--border); background: var(--surface2); color: var(--text-muted); transition: all 0.15s; }
+  .btn-sm:hover { border-color: var(--accent); color: var(--accent); }
+
+  .report-container { background: #1a1c24; border: 1px solid #2e3248; border-radius: 6px; overflow: hidden; font-family: var(--mono); }
+  .report-project-title { padding: 20px 24px 14px; font-family: var(--display); font-size: 18px; font-weight: 700; color: var(--text); border-bottom: 1px solid #2e3248; letter-spacing: -0.3px; }
+  .report-summary-msg { padding: 16px 24px; font-size: 12px; color: var(--text-muted); line-height: 1.7; border-bottom: 1px solid #2e3248; white-space: pre-wrap; }
+  .report-table-wrap { overflow-x: auto; }
+  .report-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .report-table th { background: #111320; color: #8890b0; font-weight: 500; font-size: 11px; text-align: left; padding: 12px 16px; border-bottom: 1px solid #2e3248; border-right: 1px solid #2e3248; white-space: nowrap; vertical-align: bottom; line-height: 1.4; }
+  .report-table th:last-child { border-right: none; }
+  .report-table td { padding: 11px 16px; border-bottom: 1px solid #22253a; border-right: 1px solid #22253a; color: #c8cce0; vertical-align: middle; line-height: 1.5; }
+  .report-table td:last-child { border-right: none; }
+  .report-table tr:last-child td { border-bottom: none; }
+  .report-table tr:hover td { background: rgba(79,255,176,0.03); }
+  .report-table .col-hours { text-align: right; color: var(--text); font-weight: 500; white-space: nowrap; }
+  .report-table .total-row td { background: #111320; color: var(--text); font-weight: 600; border-top: 1px solid #2e3248; }
+  .status-pill { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 20px; font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase; font-weight: 600; white-space: nowrap; }
+  .status-pill::before { content: ''; width: 5px; height: 5px; border-radius: 50%; }
+  .status-completed { background: rgba(79,255,176,0.1); color: var(--completed); border: 1px solid rgba(79,255,176,0.2); }
+  .status-completed::before { background: var(--completed); box-shadow: 0 0 4px var(--completed); }
+  .status-inprogress { background: rgba(251,191,36,0.1); color: var(--inprogress); border: 1px solid rgba(251,191,36,0.2); }
+  .status-inprogress::before { background: var(--inprogress); }
+  .status-pending { background: rgba(123,111,240,0.12); color: var(--pending); border: 1px solid rgba(123,111,240,0.25); }
+  .status-pending::before { background: var(--pending); }
+  .report-footer { padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #2e3248; background: #111320; font-size: 11px; color: #454966; }
+
   @media (max-width: 720px) {
-    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-    .col-span-2, .col-span-3 { grid-column: span 1; }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
     .header { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .fetch-row { grid-template-columns: 1fr; }
+    .branch-row { grid-template-columns: 1fr; }
+    .br-arrow { display: none; }
+  }
+
+  @media print {
+    body { background: white; color: black; }
+    body::before { display: none; }
+    .config-panel, .prompt-panel, .header, .report-header, .commits-preview, .loading-state, .error-box, .report-footer { display: none !important; }
+    .report-container { border: 1px solid #ccc; background: white; font-family: Arial, sans-serif; }
+    .report-project-title { color: black; font-size: 16px; }
+    .report-summary-msg { color: #444; font-size: 12px; }
+    .report-table th { background: #f0f0f0; color: #333; }
+    .report-table td { color: #222; }
+    .report-table .total-row td { background: #f8f8f8; }
+    .status-pill { border: 1px solid #ccc; color: #333; background: transparent; }
   }
 </style>
 </head>
 <body>
 <div class="app">
 
-  <!-- Header -->
   <header class="header">
     <div class="logo-area">
       <span class="logo-tag">// Developer Tool</span>
       <h1 class="logo-title">Dev<span>Log</span></h1>
     </div>
-    <div class="header-meta">
-      Daily Update Generator<br>
-      GitHub · GitLab · AI Powered
-    </div>
+    <div class="header-meta">Daily Update Generator<br>GitHub · GitLab · AI Powered</div>
   </header>
 
-  <!-- Step 1: Config -->
   <div class="config-panel">
     <div class="panel-title">01 — Configuration</div>
 
     <div class="tabs">
-      <button class="tab active" onclick="switchTab('github')">GitHub</button>
-      <button class="tab" onclick="switchTab('gitlab')">GitLab</button>
+      <button class="tab active" data-tab="github" onclick="switchTab(this)">GitHub</button>
+      <button class="tab" data-tab="gitlab" onclick="switchTab(this)">GitLab</button>
     </div>
 
-    <!-- GitHub Tab -->
+    <!-- ── GitHub ── -->
     <div id="tab-github" class="tab-content active">
+
       <div class="grid-2">
         <div class="field">
           <label>GitHub Personal Access Token</label>
-          <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" required>
+          <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
         </div>
         <div class="field">
-          <label>Repository (owner/repo)</label>
-          <input type="text" id="gh-repo" placeholder="e.g. acme/frontend" required>
+          <label>&nbsp;</label>
+          <button class="btn-action" onclick="loadRepos()" style="width:100%;justify-content:center;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.1"/></svg>
+            Load Repositories
+          </button>
         </div>
       </div>
-      <div class="grid-3 row-gap">
-        <div class="field">
-          <label>Branch</label>
-          <input type="text" id="gh-branch" placeholder="main" list="gh-branch-list" value="main">
-          <datalist id="gh-branch-list"></datalist>
+
+      <!-- Multi-Repo Select -->
+      <div class="field row-gap">
+        <label>Repositories <span style="color:var(--text-dim);font-size:9px;letter-spacing:0;">(select one or more)</span></label>
+        <div class="cs-wrap" id="repo-wrap">
+          <div class="cs-trigger" id="repo-trigger" onclick="togglePanel('repo')">
+            <div class="cs-tags" id="repo-tags">
+              <span class="cs-ph" id="repo-ph">— load repositories first —</span>
+            </div>
+            <svg class="cs-caret" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="cs-panel" id="repo-panel">
+            <div class="cs-searchbox">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" id="repo-search" placeholder="Search repositories..." oninput="filterList('repo')" onclick="event.stopPropagation()">
+            </div>
+            <div class="cs-all-row" onclick="toggleAll('repo')">
+              <div class="cs-all-chk" id="repo-all-chk">
+                <svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3.5 6L8 1" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="cs-all-label">Select all</span>
+            </div>
+            <div class="cs-list" id="repo-list">
+              <div class="cs-spin-row" id="repo-spin" style="display:none;"><div class="cs-mini-spin"></div>Loading repositories...</div>
+              <div class="cs-empty-msg" id="repo-empty">Enter your token and click "Load Repositories"</div>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <!-- Per-repo branch pickers -->
+      <div class="branch-grid" id="branch-grid">
+        <div class="branch-grid-label">Branch per Repository</div>
+        <div class="branch-rows" id="branch-rows"></div>
+      </div>
+
+      <!-- Date + Fetch -->
+      <div class="fetch-row">
         <div class="field">
           <label>Date</label>
           <input type="date" id="gh-date">
         </div>
         <div class="field">
           <label>&nbsp;</label>
-          <button class="btn-sm" style="width:100%;" onclick="fetchGitHubCommits()">⟳ Fetch Commits</button>
+          <button class="btn-action" onclick="fetchGitHubCommits()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Fetch Commits
+          </button>
         </div>
       </div>
-      <datalist id="gh-repo-list"></datalist>
     </div>
 
-    <!-- GitLab Tab -->
+    <!-- ── GitLab ── -->
     <div id="tab-gitlab" class="tab-content">
       <div class="grid-2">
         <div class="field">
           <label>GitLab Personal Access Token</label>
-          <input type="password" id="gl-token" placeholder="glpat-xxxxxxxxxxxxxxxxxxxx" required>
+          <input type="password" id="gl-token" placeholder="glpat-xxxxxxxxxxxxxxxxxxxx">
         </div>
         <div class="field">
-          <label>Project ID or namespace/repo</label>
-          <input type="text" id="gl-project" placeholder="e.g. 12345678 or group/project" required>
+          <label>GitLab Host (optional)</label>
+          <input type="text" id="gl-host" placeholder="gitlab.com" value="gitlab.com">
         </div>
       </div>
-      <div class="grid-3 row-gap">
-      <div class="field">
-        <label>GitLab Host (optional)</label>
-        <input type="text" id="gl-host" placeholder="gitlab.com" value="gitlab.com">
+      <div class="field row-gap">
+        <label>Project ID or namespace/repo</label>
+        <input type="text" id="gl-project" placeholder="e.g. 12345678 or group/project">
       </div>
+      <div class="grid-2 row-gap">
         <div class="field">
           <label>Branch</label>
-          <input type="text" id="gl-branch" placeholder="main" value="main" required>
+          <input type="text" id="gl-branch" placeholder="main" value="main">
         </div>
         <div class="field">
           <label>Date</label>
-          <input type="date" id="gl-date" required>
+          <input type="date" id="gl-date">
         </div>
       </div>
-      <div style="margin-top:12px; text-align:right;">
-        <button class="btn-sm" onclick="fetchGitLabCommits()">⟳ Fetch Commits</button>
+      <div style="margin-top:14px;text-align:right;">
+        <button class="btn-action" onclick="fetchGitLabCommits()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Fetch Commits
+        </button>
       </div>
     </div>
 
     <!-- Commits Preview -->
     <div class="commits-preview" id="commits-preview">
-      <div class="commits-preview-header">
-        <span id="commits-count-label">Fetched Commits</span>
-        <span id="commits-count-badge" style="color: var(--accent); font-size:11px;"></span>
+      <div class="commits-hdr">
+        <span>Fetched Commits</span>
+        <span id="commits-badge" style="color:var(--accent);font-size:11px;"></span>
       </div>
       <div class="commits-list" id="commits-list"></div>
     </div>
     <div class="error-box" id="fetch-error"></div>
   </div>
 
-  <!-- Step 2: Prompt + Generate -->
+  <!-- Step 2 -->
   <div class="prompt-panel">
-    <div class="panel-title">02 — Report Details & Prompt</div>
+    <div class="panel-title">02 — Report Details &amp; Prompt</div>
     <div class="grid-2">
       <div class="field">
         <label>Project / Client Name</label>
@@ -730,23 +467,18 @@
       <textarea id="extra-prompt" placeholder="e.g. Focus on UI components worked. Mark tasks related to auth as high priority. Estimate 1–2 hrs per feature commit, 0.5 hrs per fix..."></textarea>
     </div>
     <button class="btn-generate" id="generate-btn" onclick="generateReport()">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M8 1L10 6H15L11 9.5L12.5 15L8 11.5L3.5 15L5 9.5L1 6H6L8 1Z" fill="currentColor"/>
-      </svg>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1L10 6H15L11 9.5L12.5 15L8 11.5L3.5 15L5 9.5L1 6H6L8 1Z" fill="currentColor"/></svg>
       Generate Daily Update
     </button>
   </div>
 
-  <!-- Loading -->
   <div class="loading-state" id="loading">
     <div class="spinner"></div>
     <div class="loading-text">Generating report<span class="loading-dots"></span></div>
   </div>
 
-  <!-- Error -->
   <div class="error-box" id="generate-error"></div>
 
-  <!-- Report Output -->
   <div class="report-wrapper" id="report-wrapper">
     <div class="report-header">
       <div class="report-badge">Report Generated Successfully</div>
@@ -756,181 +488,418 @@
         <button class="btn-sm" onclick="printReport()">Print / Export PDF</button>
       </div>
     </div>
-
-    <div class="report-container" id="report-container">
+    <div class="report-container">
       <div class="report-project-title" id="report-title"></div>
       <div class="report-summary-msg" id="report-summary"></div>
       <div class="report-table-wrap">
         <table class="report-table" id="report-table">
-          <thead>
-            <tr>
-              <th>Project / Client Name</th>
-              <th>Task Description</th>
-              <th>Hours Spent</th>
-              <th style="min-width:110px">Status<br><span style="font-weight:400;font-size:10px;color:#555">(Completed / In Progress / Pending)</span></th>
-              <th>Remarks (if any)</th>
-            </tr>
-          </thead>
+          <thead><tr>
+            <th>Project / Client Name</th>
+            <th>Task Description</th>
+            <th>Hours Spent</th>
+            <th style="min-width:110px">Status<br><span style="font-weight:400;font-size:10px;color:#555">(Completed / In Progress / Pending)</span></th>
+            <th>Remarks (if any)</th>
+          </tr></thead>
           <tbody id="report-tbody"></tbody>
         </table>
       </div>
       <div class="report-footer">
-        <span id="report-footer-left"></span>
-        <span id="report-footer-right"></span>
+        <span id="report-footer-l"></span>
+        <span id="report-footer-r"></span>
       </div>
     </div>
   </div>
 
 </div>
-
 <script>
-// ── State ────────────────────────────────────────────
+/* ══════════════════════════════════════════
+   STATE
+══════════════════════════════════════════ */
 let fetchedCommits = [];
 let currentTab = 'github';
 
-// ── Init ─────────────────────────────────────────────
+// Multi-select: repoState = { options:[{value,label,meta}], selected: Set }
+const repoState = { options: [], selected: new Set() };
+
+// Single-select per repo: branchState[repoKey] = { options:[{value,label}], selected:'' }
+const branchState = {};
+
+// Lookup branch select ID from repo name
+function branchId(repo) { return 'br_' + repo.replace(/[^a-z0-9]/gi, '_'); }
+
+/* ══════════════════════════════════════════
+   INIT
+══════════════════════════════════════════ */
 (function() {
   const today = new Date().toISOString().split('T')[0];
   document.getElementById('gh-date').value = today;
   document.getElementById('gl-date').value = today;
 
-  // Restore saved values
   try {
-    const savedProject = localStorage.getItem('devlog_project');
-    const savedDevName = localStorage.getItem('devlog_dev_name');
-    const savedGhToken = localStorage.getItem('devlog_gh_token');
-    const savedGhRepo  = localStorage.getItem('devlog_gh_repo');
-    const savedGhBranch = localStorage.getItem('devlog_gh_branch');
-    const savedGhDate   = localStorage.getItem('devlog_gh_date');
-
-    if (savedProject) document.getElementById('project-name').value = savedProject;
-    if (savedDevName) document.getElementById('dev-name').value = savedDevName;
-    if (savedGhToken) document.getElementById('gh-token').value = savedGhToken;
-    if (savedGhRepo)  document.getElementById('gh-repo').value  = savedGhRepo;
-    if (savedGhBranch) document.getElementById('gh-branch').value = savedGhBranch;
-    if (savedGhDate)   document.getElementById('gh-date').value   = savedGhDate;
+    const p = localStorage.getItem('devlog_project');
+    const d = localStorage.getItem('devlog_dev_name');
+    const t = localStorage.getItem('devlog_gh_token');
+    if (p) document.getElementById('project-name').value = p;
+    if (d) document.getElementById('dev-name').value = d;
+    if (t) document.getElementById('gh-token').value = t;
   } catch {}
 
-  // Auto-load GitHub repos when token changes (debounced)
-  let repoLoadTimer;
-  document.getElementById('gh-token').addEventListener('input', () => {
-    clearTimeout(repoLoadTimer);
-    repoLoadTimer = setTimeout(loadGitHubRepos, 600);
+  document.addEventListener('click', function(e) {
+    // Close repo panel
+    const rw = document.getElementById('repo-wrap');
+    if (rw && !rw.contains(e.target)) closePanel('repo');
+
+    // Close any branch panels
+    document.querySelectorAll('[id^="br_"]').forEach(el => {
+      if (el.id.endsWith('-wrap') && !el.contains(e.target)) {
+        const bid = el.id.replace('-wrap', '');
+        closePanel(bid);
+      }
+    });
   });
 })();
 
-// ── Tab switch ───────────────────────────────────────
-function switchTab(tab) {
+/* ══════════════════════════════════════════
+   TAB
+══════════════════════════════════════════ */
+function switchTab(btn) {
+  const tab = btn.dataset.tab;
   currentTab = tab;
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-  event.target.classList.add('active');
+  btn.classList.add('active');
   document.getElementById('tab-' + tab).classList.add('active');
   fetchedCommits = [];
-  hideCommitsPreview();
+  document.getElementById('commits-preview').classList.remove('vis');
 }
 
-// ── GitHub Fetch ─────────────────────────────────────
-async function fetchGitHubCommits() {
-  const token = document.getElementById('gh-token').value.trim();
-  const repo  = document.getElementById('gh-repo').value.trim();
-  const branch = document.getElementById('gh-branch').value.trim() || 'main';
-  const date  = document.getElementById('gh-date').value;
-
-  if (!token) { showFetchError('GitHub token is required.'); return; }
-  if (!repo) { showFetchError('Repository (owner/repo) is required.'); return; }
-  if (!branch) { showFetchError('Branch is required.'); return; }
-  if (!date) { showFetchError('Please pick a date.'); return; }
-
-  hideFetchError();
-
-  // persist GitHub config for next session
-  try {
-    localStorage.setItem('devlog_gh_token', token);
-    localStorage.setItem('devlog_gh_repo', repo);
-    localStorage.setItem('devlog_gh_branch', branch);
-    if (date) localStorage.setItem('devlog_gh_date', date);
-  } catch {}
-  const since = date + 'T00:00:00Z';
-  const until = date + 'T23:59:59Z';
-
-  let url = `https://api.github.com/repos/${repo}/commits?sha=${branch}&since=${since}&until=${until}&per_page=100`;
-
-  const headers = { 'Accept': 'application/vnd.github+json' };
-  if (token) headers['Authorization'] = 'Bearer ' + token;
-
-  try {
-    const res = await fetch(url, { headers });
-    if (!res.ok) {
-      const err = await res.json();
-      throw new Error(err.message || 'GitHub API error');
-    }
-    const data = await res.json();
-    fetchedCommits = data.map(c => ({
-      sha: c.sha.slice(0, 7),
-      message: c.commit.message.split('\n')[0],
-      author: c.commit.author.name,
-      date: c.commit.author.date,
-    }));
-    renderCommitsPreview();
-  } catch(e) {
-    showFetchError('GitHub Error: ' + e.message);
-  }
-}
-// ── GitHub helper: load repos & branches ────────────────
-async function loadGitHubRepos() {
-  const token = document.getElementById('gh-token').value.trim();
-  if (!token) return;
-
-  const list = document.getElementById('gh-repo-list');
-  if (!list) return;
-
-  try {
-    const res = await fetch('https://api.github.com/user/repos?per_page=100', {
-      headers: {
-        'Accept': 'application/vnd.github+json',
-        'Authorization': 'Bearer ' + token,
-      },
-    });
-    if (!res.ok) return;
-    const repos = await res.json();
-    list.innerHTML = repos.map(r =>
-      `<option value="${escHtml(r.full_name)}"></option>`
-    ).join('');
-    document.getElementById('gh-repo').setAttribute('list', 'gh-repo-list');
-  } catch {
-    // ignore autocomplete errors
+/* ══════════════════════════════════════════
+   PANEL OPEN/CLOSE
+══════════════════════════════════════════ */
+function togglePanel(id) {
+  const panel = document.getElementById(id + '-panel');
+  const trigger = document.getElementById(id + '-trigger');
+  if (!panel) return;
+  const open = panel.classList.contains('is-open');
+  // close all
+  closeAllPanels();
+  if (!open) {
+    panel.classList.add('is-open');
+    trigger && trigger.classList.add('is-open');
+    const search = document.getElementById(id + '-search');
+    if (search) { search.value = ''; renderList(id); setTimeout(() => search.focus(), 50); }
   }
 }
 
-async function loadGitHubBranches() {
-  const token = document.getElementById('gh-token').value.trim();
-  const repo  = document.getElementById('gh-repo').value.trim();
-  if (!token || !repo) return;
-  const list = document.getElementById('gh-branch-list');
-  if (!list) return;
+function closePanel(id) {
+  const panel = document.getElementById(id + '-panel');
+  const trigger = document.getElementById(id + '-trigger');
+  if (panel) panel.classList.remove('is-open');
+  if (trigger) trigger.classList.remove('is-open');
+}
 
+function closeAllPanels() {
+  document.querySelectorAll('.cs-panel.is-open').forEach(p => p.classList.remove('is-open'));
+  document.querySelectorAll('.cs-trigger.is-open').forEach(t => t.classList.remove('is-open'));
+}
+
+/* ══════════════════════════════════════════
+   REPO MULTI-SELECT
+══════════════════════════════════════════ */
+function setRepoOptions(opts) {
+  repoState.options = opts;
+  repoState.selected.forEach(v => { if (!opts.find(o => o.value === v)) repoState.selected.delete(v); });
+  renderList('repo');
+  renderRepoTags();
+}
+
+function renderList(id) {
+  if (id === 'repo') renderRepoList();
+  else renderBranchList(id);
+}
+
+function filterList(id) { renderList(id); }
+
+function renderRepoList() {
+  const container = document.getElementById('repo-list');
+  const search = (document.getElementById('repo-search') || {}).value || '';
+  const q = search.toLowerCase();
+  const spin = document.getElementById('repo-spin');
+  const empty = document.getElementById('repo-empty');
+
+  if (spin) spin.style.display = 'none';
+  container.querySelectorAll('.cs-opt').forEach(e => e.remove());
+
+  const filtered = repoState.options.filter(o =>
+    o.label.toLowerCase().includes(q) || (o.meta || '').toLowerCase().includes(q)
+  );
+
+  if (empty) empty.style.display = filtered.length === 0 ? 'block' : 'none';
+  if (empty && filtered.length === 0) {
+    empty.textContent = q ? 'No repositories match.' : (repoState.options.length === 0 ? 'Load repositories first.' : 'No repositories match.');
+  }
+
+  filtered.forEach(opt => {
+    const sel = repoState.selected.has(opt.value);
+    const div = document.createElement('div');
+    div.className = 'cs-opt' + (sel ? ' sel' : '');
+    div.innerHTML = `
+      <div class="cs-chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3.5 6L8 1" stroke="#0d0f14" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="cs-opt-text">${esc(opt.label)}</span>
+      ${opt.meta ? `<span class="cs-badge">${esc(opt.meta)}</span>` : ''}
+    `;
+    div.addEventListener('click', e => { e.stopPropagation(); toggleRepo(opt.value); });
+    container.appendChild(div);
+  });
+
+  // Update all-check
+  const allChk = document.getElementById('repo-all-chk');
+  if (allChk) {
+    const allSel = repoState.options.length > 0 && repoState.options.every(o => repoState.selected.has(o.value));
+    allChk.classList.toggle('checked', allSel);
+  }
+}
+
+function toggleRepo(val) {
+  if (repoState.selected.has(val)) repoState.selected.delete(val);
+  else repoState.selected.add(val);
+  renderRepoList();
+  renderRepoTags();
+  syncBranchGrid();
+}
+
+function toggleAll(id) {
+  if (id !== 'repo') return;
+  const allSel = repoState.options.every(o => repoState.selected.has(o.value));
+  if (allSel) repoState.selected.clear();
+  else repoState.options.forEach(o => repoState.selected.add(o.value));
+  renderRepoList();
+  renderRepoTags();
+  syncBranchGrid();
+}
+
+function renderRepoTags() {
+  const tagsEl = document.getElementById('repo-tags');
+  const ph = document.getElementById('repo-ph');
+  tagsEl.querySelectorAll('.cs-tag').forEach(t => t.remove());
+  const sel = [...repoState.selected];
+  ph.style.display = sel.length === 0 ? '' : 'none';
+  if (sel.length === 0) { ph.textContent = repoState.options.length > 0 ? '— select repositories —' : '— load repositories first —'; return; }
+  sel.forEach(val => {
+    const opt = repoState.options.find(o => o.value === val);
+    if (!opt) return;
+    const tag = document.createElement('span');
+    tag.className = 'cs-tag';
+    tag.innerHTML = `<span title="${esc(opt.label)}">${esc(opt.label)}</span><span class="rm" onclick="removeRepo(event,'${esc(val)}')">×</span>`;
+    tagsEl.appendChild(tag);
+  });
+}
+
+function removeRepo(e, val) {
+  e.stopPropagation();
+  repoState.selected.delete(val);
+  renderRepoTags();
+  renderRepoList();
+  syncBranchGrid();
+}
+
+/* ══════════════════════════════════════════
+   BRANCH GRID (per selected repo)
+══════════════════════════════════════════ */
+function syncBranchGrid() {
+  const grid = document.getElementById('branch-grid');
+  const rows = document.getElementById('branch-rows');
+  const selected = [...repoState.selected];
+
+  grid.style.display = selected.length > 0 ? 'block' : 'none';
+
+  // Remove rows for deselected repos
+  [...rows.querySelectorAll('[data-repo]')].forEach(row => {
+    if (!selected.includes(row.dataset.repo)) row.remove();
+  });
+
+  const token = document.getElementById('gh-token').value.trim();
+
+  for (const repo of selected) {
+    if (rows.querySelector(`[data-repo="${CSS.escape(repo)}"]`)) continue;
+    const bid = branchId(repo);
+    const [owner, name] = repo.includes('/') ? repo.split('/') : ['', repo];
+
+    const row = document.createElement('div');
+    row.className = 'branch-row';
+    row.dataset.repo = repo;
+    row.innerHTML = `
+      <div class="br-repo-name"><em>${esc(owner)}/</em>${esc(name)}</div>
+      <div class="br-arrow">→</div>
+      <div class="cs-wrap" id="${bid}-wrap">
+        <div class="cs-trigger branch-trigger" id="${bid}-trigger" onclick="togglePanel('${bid}')">
+          <div class="cs-tags" id="${bid}-tags">
+            <span class="cs-ph" id="${bid}-ph">loading…</span>
+          </div>
+          <svg class="cs-caret" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+        </div>
+        <div class="cs-panel bp" id="${bid}-panel">
+          <div class="cs-searchbox">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="${bid}-search" placeholder="Search branches…" oninput="renderBranchList('${bid}')" onclick="event.stopPropagation()">
+          </div>
+          <div class="cs-list" id="${bid}-list">
+            <div class="cs-spin-row" id="${bid}-spin"><div class="cs-mini-spin"></div>Loading branches…</div>
+            <div class="cs-empty-msg" id="${bid}-empty" style="display:none;">No branches found.</div>
+          </div>
+        </div>
+      </div>
+    `;
+    rows.appendChild(row);
+
+    branchState[bid] = { options: [], selected: 'main' };
+    if (token) fetchBranches(token, repo, bid);
+    else initBranchOpts(bid, [{ value:'main', label:'main' }, { value:'master', label:'master' }]);
+  }
+}
+
+async function fetchBranches(token, repo, bid) {
   try {
     const res = await fetch(`https://api.github.com/repos/${repo}/branches?per_page=100`, {
-      headers: {
-        'Accept': 'application/vnd.github+json',
-        'Authorization': 'Bearer ' + token,
-      },
+      headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' }
     });
-    if (!res.ok) return;
-    const branches = await res.json();
-    list.innerHTML = branches.map(b =>
-      `<option value="${escHtml(b.name)}"></option>`
-    ).join('');
+    const data = res.ok ? await res.json() : [];
+    const opts = data.length ? data.map(b => ({ value: b.name, label: b.name })) : [{ value:'main', label:'main' }];
+    initBranchOpts(bid, opts);
   } catch {
-    // ignore autocomplete errors
+    initBranchOpts(bid, [{ value:'main', label:'main' }, { value:'master', label:'master' }]);
   }
 }
 
-document.getElementById('gh-repo').addEventListener('blur', loadGitHubBranches);
+function initBranchOpts(bid, opts) {
+  const spin = document.getElementById(bid + '-spin');
+  if (spin) spin.style.display = 'none';
+  branchState[bid] = { options: opts, selected: (opts.find(o => o.value==='main') || opts.find(o => o.value==='master') || opts[0] || { value:'main' }).value };
+  renderBranchList(bid);
+  renderBranchTag(bid);
+}
 
+function renderBranchList(bid) {
+  const container = document.getElementById(bid + '-list');
+  if (!container) return;
+  const spin = document.getElementById(bid + '-spin');
+  const empty = document.getElementById(bid + '-empty');
+  const search = document.getElementById(bid + '-search');
+  const q = search ? search.value.toLowerCase() : '';
+  const state = branchState[bid];
+  if (!state) return;
 
-// ── GitLab Fetch ─────────────────────────────────────
+  if (spin) spin.style.display = 'none';
+  container.querySelectorAll('.cs-opt').forEach(e => e.remove());
+  const filtered = state.options.filter(o => o.label.toLowerCase().includes(q));
+  if (empty) empty.style.display = filtered.length === 0 ? 'block' : 'none';
+
+  filtered.forEach(opt => {
+    const sel = state.selected === opt.value;
+    const div = document.createElement('div');
+    div.className = 'cs-opt bo' + (sel ? ' sel' : '');
+    div.innerHTML = `
+      <div class="cs-chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3.5 6L8 1" stroke="#0d0f14" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="cs-opt-text">${esc(opt.label)}</span>
+    `;
+    div.addEventListener('click', e => {
+      e.stopPropagation();
+      branchState[bid].selected = opt.value;
+      renderBranchTag(bid);
+      renderBranchList(bid);
+      closePanel(bid);
+    });
+    container.appendChild(div);
+  });
+}
+
+function renderBranchTag(bid) {
+  const tagsEl = document.getElementById(bid + '-tags');
+  const ph = document.getElementById(bid + '-ph');
+  if (!tagsEl) return;
+  tagsEl.querySelectorAll('.cs-tag').forEach(t => t.remove());
+  const val = branchState[bid] ? branchState[bid].selected : '';
+  if (!val) { if (ph) { ph.style.display = ''; ph.textContent = 'select branch'; } return; }
+  if (ph) ph.style.display = 'none';
+  const tag = document.createElement('span');
+  tag.className = 'cs-tag bt';
+  tag.innerHTML = `<span>${esc(val)}</span>`;
+  tagsEl.appendChild(tag);
+}
+
+/* ══════════════════════════════════════════
+   GITHUB FETCH COMMITS
+══════════════════════════════════════════ */
+async function loadRepos() {
+  const token = document.getElementById('gh-token').value.trim();
+  if (!token) { showFetchErr('GitHub token is required.'); return; }
+
+  hideFetchErr();
+  const spin = document.getElementById('repo-spin');
+  const empty = document.getElementById('repo-empty');
+  const panel = document.getElementById('repo-panel');
+  const trigger = document.getElementById('repo-trigger');
+
+  panel.classList.add('is-open');
+  trigger.classList.add('is-open');
+  if (spin) { spin.style.display = 'flex'; }
+  if (empty) empty.style.display = 'none';
+  document.getElementById('repo-list').querySelectorAll('.cs-opt').forEach(e => e.remove());
+
+  try {
+    const res = await fetch('https://api.github.com/user/repos?per_page=100&sort=pushed', {
+      headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' }
+    });
+    if (!res.ok) throw new Error((await res.json()).message || 'GitHub API error');
+    const repos = await res.json();
+    if (spin) spin.style.display = 'none';
+    setRepoOptions(repos.map(r => ({ value: r.full_name, label: r.full_name, meta: r.private ? 'private' : 'public' })));
+    try { localStorage.setItem('devlog_gh_token', token); } catch {}
+  } catch(e) {
+    if (spin) spin.style.display = 'none';
+    showFetchErr('GitHub Error: ' + e.message);
+    closePanel('repo');
+  }
+}
+
+async function fetchGitHubCommits() {
+  const token = document.getElementById('gh-token').value.trim();
+  const date  = document.getElementById('gh-date').value;
+  const selectedRepos = [...repoState.selected];
+
+  if (!token) { showFetchErr('GitHub token is required.'); return; }
+  if (selectedRepos.length === 0) { showFetchErr('Please select at least one repository.'); return; }
+  if (!date) { showFetchErr('Please pick a date.'); return; }
+
+  hideFetchErr();
+  fetchedCommits = [];
+
+  const since = date + 'T00:00:00Z';
+  const until = date + 'T23:59:59Z';
+  const hdrs = { 'Accept': 'application/vnd.github+json', 'Authorization': 'Bearer ' + token };
+  const groups = [];
+  const errors = [];
+
+  for (const repo of selectedRepos) {
+    const bid = branchId(repo);
+    const branch = (branchState[bid] && branchState[bid].selected) || 'main';
+    try {
+      const res = await fetch(`https://api.github.com/repos/${repo}/commits?sha=${branch}&since=${since}&until=${until}&per_page=100`, { headers: hdrs });
+      if (!res.ok) { errors.push(`${repo}: ${(await res.json()).message || 'API error'}`); continue; }
+      const data = await res.json();
+      const commits = data.map(c => ({ sha: c.sha.slice(0,7), message: c.commit.message.split('\n')[0], author: c.commit.author.name, date: c.commit.author.date, repo, branch }));
+      groups.push({ repo, branch, commits });
+      fetchedCommits.push(...commits);
+    } catch(e) { errors.push(`${repo}: ${e.message}`); }
+  }
+
+  if (errors.length) showFetchErr(errors.join('\n'));
+  renderCommitsGrouped(groups);
+}
+
+/* ══════════════════════════════════════════
+   GITLAB
+══════════════════════════════════════════ */
 async function fetchGitLabCommits() {
   const token   = document.getElementById('gl-token').value.trim();
   const project = document.getElementById('gl-project').value.trim();
@@ -938,304 +907,171 @@ async function fetchGitLabCommits() {
   const branch  = document.getElementById('gl-branch').value.trim() || 'main';
   const date    = document.getElementById('gl-date').value;
 
-  if (!project) { showFetchError('Please enter a project ID or path'); return; }
-  if (!token)   { showFetchError('GitLab requires a Personal Access Token'); return; }
+  if (!project) { showFetchErr('Please enter a project ID or path'); return; }
+  if (!token)   { showFetchErr('GitLab requires a Personal Access Token'); return; }
+  hideFetchErr();
 
-  hideFetchError();
   const since = date + 'T00:00:00Z';
   const until = date + 'T23:59:59Z';
-  const encodedProject = encodeURIComponent(project);
-
-  const url = `https://${host}/api/v4/projects/${encodedProject}/repository/commits?ref_name=${branch}&since=${since}&until=${until}&per_page=100`;
-
   try {
-    const res = await fetch(url, { headers: { 'PRIVATE-TOKEN': token } });
-    if (!res.ok) {
-      const err = await res.json();
-      throw new Error(err.message || 'GitLab API error');
-    }
+    const res = await fetch(`https://${host}/api/v4/projects/${encodeURIComponent(project)}/repository/commits?ref_name=${branch}&since=${since}&until=${until}&per_page=100`, { headers: { 'PRIVATE-TOKEN': token } });
+    if (!res.ok) throw new Error((await res.json()).message || 'GitLab API error');
     const data = await res.json();
-    fetchedCommits = data.map(c => ({
-      sha: c.short_id,
-      message: c.title,
-      author: c.author_name,
-      date: c.authored_date,
-    }));
-    renderCommitsPreview();
-  } catch(e) {
-    showFetchError('GitLab Error: ' + e.message);
-  }
+    fetchedCommits = data.map(c => ({ sha: c.short_id, message: c.title, author: c.author_name, date: c.authored_date, repo: project, branch }));
+    renderCommitsGrouped([{ repo: project, branch, commits: fetchedCommits }]);
+  } catch(e) { showFetchErr('GitLab Error: ' + e.message); }
 }
 
-// ── Render Commits Preview ────────────────────────────
-function renderCommitsPreview() {
+/* ══════════════════════════════════════════
+   COMMITS PREVIEW
+══════════════════════════════════════════ */
+function renderCommitsGrouped(groups) {
   const preview = document.getElementById('commits-preview');
   const list    = document.getElementById('commits-list');
-  const badge   = document.getElementById('commits-count-badge');
+  const badge   = document.getElementById('commits-badge');
 
-  preview.classList.add('visible');
-  badge.textContent = fetchedCommits.length + ' commits';
-  list.innerHTML = fetchedCommits.length === 0
-    ? '<div class="commit-item"><span class="commit-msg" style="color:var(--text-muted)">No commits found for this date.</span></div>'
-    : fetchedCommits.map(c => `
-        <div class="commit-item">
-          <span class="commit-sha">${c.sha}</span>
-          <span class="commit-msg">${escHtml(c.message)}</span>
-          <span class="commit-time">${formatTime(c.date)}</span>
-        </div>`).join('');
+  preview.classList.add('vis');
+  const total = groups.reduce((s, g) => s + g.commits.length, 0);
+  badge.textContent = total + ' commit' + (total !== 1 ? 's' : '') + ' · ' + groups.length + ' repo' + (groups.length !== 1 ? 's' : '');
+  list.innerHTML = '';
+
+  if (total === 0) {
+    list.innerHTML = '<div class="commit-item"><span class="c-msg" style="color:var(--text-muted)">No commits found for this date.</span></div>';
+    return;
+  }
+
+  groups.forEach(({ repo, branch, commits }) => {
+    if (!commits.length) return;
+    const hdr = document.createElement('div');
+    hdr.className = 'commits-group-hdr';
+    hdr.innerHTML = `${esc(repo)} <span class="bchip">${esc(branch)}</span><span style="color:var(--text-dim);margin-left:auto;">${commits.length} commit${commits.length !== 1 ? 's' : ''}</span>`;
+    list.appendChild(hdr);
+    commits.forEach(c => {
+      const item = document.createElement('div');
+      item.className = 'commit-item';
+      item.innerHTML = `<span class="c-sha">${esc(c.sha)}</span><span class="c-msg">${esc(c.message)}</span><span class="c-time">${fmtTime(c.date)}</span>`;
+      list.appendChild(item);
+    });
+  });
 }
 
-function hideCommitsPreview() {
-  document.getElementById('commits-preview').classList.remove('visible');
-}
-
-// ── Generate Report ───────────────────────────────────
+/* ══════════════════════════════════════════
+   GENERATE REPORT
+══════════════════════════════════════════ */
 async function generateReport() {
   const project = document.getElementById('project-name').value.trim() || 'Project';
   const devName = document.getElementById('dev-name').value.trim();
   const extra   = document.getElementById('extra-prompt').value.trim();
 
-  if (!project) { showGenerateError('Project / Client Name is required.'); return; }
-  if (!devName) { showGenerateError('Your Name / Role is required.'); return; }
-  if (!fetchedCommits.length && !extra) {
-    showGenerateError('Please fetch commits for the day or provide Additional Context before generating the report.');
-    return;
-  }
+  if (!devName) { showGenErr('Your Name / Role is required.'); return; }
+  if (!fetchedCommits.length && !extra) { showGenErr('Please fetch commits or provide Additional Context before generating.'); return; }
 
-  // persist commonly used fields
-  try {
-    localStorage.setItem('devlog_project', project);
-    if (devName) localStorage.setItem('devlog_dev_name', devName);
-  } catch {}
-
-  hideGenerateError();
+  try { localStorage.setItem('devlog_project', project); if (devName) localStorage.setItem('devlog_dev_name', devName); } catch {}
+  hideGenErr();
   setGenerating(true);
 
   try {
-    // Always use the deployed Vercel backend.
-    // If you want to use a local server again, change this base URL.
-    const base = 'https://generative-ai-learning.vercel.app';
-
-    const res = await fetch(base + '/api/generate-report', {
+    const res = await fetch('https://generative-ai-learning.vercel.app/api/generate-report', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        project,
-        devName,
-        extra,
-        commits: fetchedCommits,
-      }),
+      body: JSON.stringify({ project, devName, extra, commits: fetchedCommits }),
     });
-
-    if (!res.ok) {
-      const err = await res.json().catch(() => ({}));
-      throw new Error(err.error || ('API error ' + res.status));
-    }
-
+    if (!res.ok) throw new Error((await res.json().catch(()=>({}))).error || 'API error ' + res.status);
     const { report } = await res.json();
     if (!report) throw new Error('Malformed response from server.');
     renderReport(report, project, devName);
-
   } catch(e) {
-    showGenerateError('Error: ' + e.message);
-  } finally {
-    setGenerating(false);
-  }
+    showGenErr('Error: ' + e.message);
+  } finally { setGenerating(false); }
 }
 
-// ── Render Report ─────────────────────────────────────
+/* ══════════════════════════════════════════
+   RENDER REPORT
+══════════════════════════════════════════ */
 function renderReport(report, project, devName) {
   document.getElementById('report-title').textContent = 'Project / Client Name: ' + project;
   const longDate = new Date().toLocaleDateString('en-GB', { day:'2-digit', month:'long', year:'numeric' });
-  const employee = devName || 'Employee';
   document.getElementById('report-summary').textContent =
-    `Date - ${longDate}\nEmployee Name: ${employee}\nProject / Client Name: ${project}\n\n${report.summary}`;
+    `Date - ${longDate}\nEmployee Name: ${devName || 'Employee'}\nProject / Client Name: ${project}\n\n${report.summary}`;
 
-  const tbody = document.getElementById('report-tbody');
-  tbody.innerHTML = report.tasks.map(task => `
+  document.getElementById('report-tbody').innerHTML = report.tasks.map(t => `
     <tr>
-      <td>${escHtml(task.project)}</td>
-      <td>${escHtml(task.description)}</td>
-      <td class="col-hours">${task.hours}</td>
-      <td>${statusPill(task.status)}</td>
-      <td>${escHtml(task.remarks || '')}</td>
+      <td>${esc(t.project)}</td><td>${esc(t.description)}</td>
+      <td class="col-hours">${t.hours}</td>
+      <td>${statusPill(t.status)}</td>
+      <td>${esc(t.remarks||'')}</td>
     </tr>`).join('') + `
     <tr class="total-row">
-      <td><strong>Total</strong></td>
-      <td></td>
+      <td><strong>Total</strong></td><td></td>
       <td class="col-hours"><strong>${report.totalHours}</strong></td>
-      <td></td>
-      <td></td>
+      <td></td><td></td>
     </tr>`;
 
   const dateStr = new Date().toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' });
-  document.getElementById('report-footer-left').textContent =
-    (devName ? devName + ' · ' : '') + dateStr;
-  document.getElementById('report-footer-right').textContent =
-    report.tasks.length + ' tasks · ' + report.totalHours + ' hrs total';
+  document.getElementById('report-footer-l').textContent = (devName ? devName + ' · ' : '') + dateStr;
+  document.getElementById('report-footer-r').textContent = report.tasks.length + ' tasks · ' + report.totalHours + ' hrs total';
 
-  document.getElementById('report-wrapper').classList.add('visible');
-  document.getElementById('report-wrapper').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const rw = document.getElementById('report-wrapper');
+  rw.classList.add('vis');
+  rw.scrollIntoView({ behavior:'smooth', block:'start' });
 }
 
-function statusPill(status) {
-  const map = {
-    'Completed':   'status-completed',
-    'In Progress': 'status-inprogress',
-    'Pending':     'status-pending',
-  };
-  const cls = map[status] || 'status-pending';
-  return `<span class="status-pill ${cls}">${escHtml(status)}</span>`;
+function statusPill(s) {
+  const m = { 'Completed':'status-completed', 'In Progress':'status-inprogress', 'Pending':'status-pending' };
+  return `<span class="status-pill ${m[s]||'status-pending'}">${esc(s)}</span>`;
 }
 
-// ── Actions ───────────────────────────────────────────
+/* ══════════════════════════════════════════
+   COPY / PRINT
+══════════════════════════════════════════ */
+function buildHtmlTable(rows) {
+  return '<table border="1" cellpadding="4" cellspacing="0" style="border-collapse:collapse;">' +
+    rows.map((r,i) => '<tr>' + [...r.querySelectorAll('th,td')].map(c => {
+      const t = i===0?'th':'td';
+      return `<${t} style="border:1px solid #888;padding:4px 8px;">${c.innerText.replace(/\n/g,' ').trim()}</${t}>`;
+    }).join('') + '</tr>').join('') + '</table>';
+}
+
 function copyTable() {
-  const table = document.getElementById('report-table');
-  const rows = [...table.querySelectorAll('tr')];
-  const tsv = rows.map(r =>
-    [...r.querySelectorAll('th, td')].map(c => c.innerText.replace(/\n/g,' ').trim()).join('\t')
-  ).join('\n');
-
-  // Build an HTML table for rich paste (e.g., Outlook)
-  const htmlTable =
-    '<table border="1" cellpadding="4" cellspacing="0" style="border-collapse:collapse;">' +
-    rows.map((r, idx) => {
-      const cells = [...r.querySelectorAll('th, td')];
-      const tag = idx === 0 ? 'th' : 'td';
-      const inner = cells.map(c =>
-        `<${tag} style="border:1px solid #888;padding:4px 8px;">${c.innerText.replace(/\n/g,' ').trim()}</${tag}>`
-      ).join('');
-      return `<tr>${inner}</tr>`;
-    }).join('') +
-    '</table>';
-
+  const rows = [...document.getElementById('report-table').querySelectorAll('tr')];
+  const tsv = rows.map(r => [...r.querySelectorAll('th,td')].map(c => c.innerText.replace(/\n/g,' ').trim()).join('\t')).join('\n');
+  const html = buildHtmlTable(rows);
   if (navigator.clipboard && window.ClipboardItem) {
-    const item = new ClipboardItem({
-      'text/html': new Blob([htmlTable], { type: 'text/html' }),
-      'text/plain': new Blob([tsv], { type: 'text/plain' }),
-    });
-    navigator.clipboard.write([item]).then(() =>
-      alert('Table copied. Paste into Outlook/Word to keep the table formatting.'));
-  } else {
-    navigator.clipboard.writeText(tsv).then(() =>
-      alert('Table copied as text (TSV).'));
-  }
+    navigator.clipboard.write([new ClipboardItem({ 'text/html': new Blob([html],{type:'text/html'}), 'text/plain': new Blob([tsv],{type:'text/plain'}) })]).then(()=>alert('Table copied. Paste into Outlook/Word.'));
+  } else { navigator.clipboard.writeText(tsv).then(()=>alert('Copied as text.')); }
 }
 
 function copyFullReport() {
   const project = document.getElementById('project-name').value.trim() || 'Project';
   const devName = document.getElementById('dev-name').value.trim() || 'Employee';
   const longDate = new Date().toLocaleDateString('en-GB', { day:'2-digit', month:'long', year:'numeric' });
-
-  const table   = document.getElementById('report-table');
-  const rows    = [...table.querySelectorAll('tr')];
-  const tsv     = rows.map(r =>
-    [...r.querySelectorAll('th, td')].map(c => c.innerText.replace(/\n/g,' ').trim()).join('\t')
-  ).join('\n');
-
-  const plainBody =
-    `Date - ${longDate}\n` +
-    `Employee Name: ${devName}\n` +
-    `Project / Client Name: ${project}\n\n` +
-    `${tsv}\n\n` +
-    `Best Regards,\n${devName}`;
-
-  // HTML email-friendly version with real <table>
-  const htmlHeader =
-    `<p>Date - ${longDate}<br>` +
-    `Employee Name: ${devName}<br>` +
-    `Project / Client Name: ${project}</p>`;
-
-  const htmlTable =
-    '<table border="1" cellpadding="4" cellspacing="0" style="border-collapse:collapse;">' +
-    rows.map((r, idx) => {
-      const cells = [...r.querySelectorAll('th, td')];
-      const tag = idx === 0 ? 'th' : 'td';
-      const inner = cells.map(c =>
-        `<${tag} style="border:1px solid #888;padding:4px 8px;">${c.innerText.replace(/\n/g,' ').trim()}</${tag}>`
-      ).join('');
-      return `<tr>${inner}</tr>`;
-    }).join('') +
-    '</table>';
-
-  const htmlFooter = `<p>Best Regards,<br>${devName}</p>`;
-  const htmlBody = `${htmlHeader}${htmlTable}${htmlFooter}`;
-
+  const rows = [...document.getElementById('report-table').querySelectorAll('tr')];
+  const tsv = rows.map(r => [...r.querySelectorAll('th,td')].map(c => c.innerText.replace(/\n/g,' ').trim()).join('\t')).join('\n');
+  const html = buildHtmlTable(rows);
+  const htmlBody = `<p>Date - ${longDate}<br>Employee Name: ${devName}<br>Project / Client Name: ${project}</p>${html}<p>Best Regards,<br>${devName}</p>`;
+  const plain = `Date - ${longDate}\nEmployee Name: ${devName}\nProject / Client Name: ${project}\n\n${tsv}\n\nBest Regards,\n${devName}`;
   if (navigator.clipboard && window.ClipboardItem) {
-    const item = new ClipboardItem({
-      'text/html': new Blob([htmlBody], { type: 'text/html' }),
-      'text/plain': new Blob([plainBody], { type: 'text/plain' }),
-    });
-    navigator.clipboard.write([item]).then(() =>
-      alert('Full report copied. Paste into Outlook/Word to keep formatting.'));
-  } else {
-    navigator.clipboard.writeText(plainBody).then(() =>
-      alert('Full report copied as plain text.'));
-  }
+    navigator.clipboard.write([new ClipboardItem({ 'text/html': new Blob([htmlBody],{type:'text/html'}), 'text/plain': new Blob([plain],{type:'text/plain'}) })]).then(()=>alert('Full report copied. Paste into Outlook/Word.'));
+  } else { navigator.clipboard.writeText(plain).then(()=>alert('Copied as plain text.')); }
 }
 
-function printReport() {
-  window.print();
-}
+function printReport() { window.print(); }
 
-// ── Helpers ───────────────────────────────────────────
-function escHtml(s) {
-  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
-function formatTime(iso) {
-  try {
-    return new Date(iso).toLocaleTimeString('en-US', { hour:'2-digit', minute:'2-digit' });
-  } catch { return ''; }
-}
-
+/* ══════════════════════════════════════════
+   HELPERS
+══════════════════════════════════════════ */
+function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function fmtTime(iso) { try { return new Date(iso).toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'}); } catch{return '';} }
 function setGenerating(on) {
   document.getElementById('generate-btn').disabled = on;
-  document.getElementById('loading').classList.toggle('visible', on);
-  if (!on) document.getElementById('loading').style.display = 'none';
-  else document.getElementById('loading').style.display = 'flex';
+  const l = document.getElementById('loading');
+  l.style.display = on ? 'flex' : 'none';
+  l.classList.toggle('vis', on);
 }
-
-function showFetchError(msg) {
-  const el = document.getElementById('fetch-error');
-  el.textContent = msg;
-  el.classList.add('visible');
-}
-
-function hideFetchError() {
-  document.getElementById('fetch-error').classList.remove('visible');
-}
-
-function showGenerateError(msg) {
-  const el = document.getElementById('generate-error');
-  el.textContent = msg;
-  el.classList.add('visible');
-}
-
-function hideGenerateError() {
-  document.getElementById('generate-error').classList.remove('visible');
-}
+function showFetchErr(m) { const e=document.getElementById('fetch-error'); e.textContent=m; e.classList.add('vis'); }
+function hideFetchErr() { document.getElementById('fetch-error').classList.remove('vis'); }
+function showGenErr(m) { const e=document.getElementById('generate-error'); e.textContent=m; e.classList.add('vis'); }
+function hideGenErr() { document.getElementById('generate-error').classList.remove('vis'); }
 </script>
-
-<!-- Print styles -->
-<style>
-@media print {
-  body { background: white; color: black; }
-  body::before { display: none; }
-  .config-panel, .prompt-panel, .header, .report-header, .commits-preview,
-  .loading-state, .error-box, .report-footer { display: none !important; }
-  .report-container {
-    border: 1px solid #ccc;
-    background: white;
-    font-family: Arial, sans-serif;
-  }
-  .report-project-title { color: black; font-size: 16px; }
-  .report-summary-msg { color: #444; font-size: 12px; }
-  .report-table th { background: #f0f0f0; color: #333; }
-  .report-table td { color: #222; }
-  .report-table .total-row td { background: #f8f8f8; }
-  .status-pill { border: 1px solid #ccc; color: #333; background: transparent; }
-}
-</style>
 </body>
 </html>
